@@ -8,9 +8,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+
+@NoArgsConstructor
+@Data
 @Entity
 public class Product{
         @Id
@@ -30,9 +35,6 @@ public class Product{
         String images;
         LocalDate createdDate;
 
-        public Product() {
-        }
-
         public Product(Long vendorId, String name, String description, Integer price, Long categoryId, Integer stock, String images, LocalDate createdDate) {
                 this.vendorId = vendorId;
                 this.name = name;
@@ -44,75 +46,4 @@ public class Product{
                 this.createdDate = createdDate;
         }
 
-        public Long getId() {
-                return id;
-        }
-
-        public void setId(Long id) {
-                this.id = id;
-        }
-
-        public Long getVendorId() {
-                return vendorId;
-        }
-
-        public void setVendorId(Long vendorId) {
-                this.vendorId = vendorId;
-        }
-
-        public String getName() {
-                return name;
-        }
-
-        public void setName(String name) {
-                this.name = name;
-        }
-
-        public String getDescription() {
-                return description;
-        }
-
-        public void setDescription(String description) {
-                this.description = description;
-        }
-
-        public Integer getPrice() {
-                return price;
-        }
-
-        public void setPrice(Integer price) {
-                this.price = price;
-        }
-
-        public Long getCategoryId() {
-                return categoryId;
-        }
-
-        public void setCategoryId(Long categoryId) {
-                this.categoryId = categoryId;
-        }
-
-        public Integer getStock() {
-                return stock;
-        }
-
-        public void setStock(Integer stock) {
-                this.stock = stock;
-        }
-
-        public String getImages() {
-                return images;
-        }
-
-        public void setImages(String images) {
-                this.images = images;
-        }
-
-        public LocalDate getCreatedDate() {
-                return createdDate;
-        }
-
-        public void setCreatedDate(LocalDate createdDate) {
-                this.createdDate = createdDate;
-        }
 }

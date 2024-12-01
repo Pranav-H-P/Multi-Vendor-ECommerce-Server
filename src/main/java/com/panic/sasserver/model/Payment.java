@@ -5,9 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@Data
 @Entity
 public class Payment{
         @Id
@@ -29,62 +33,6 @@ public class Payment{
                 this.orderId = orderId;
         }
 
-        public Payment() {
-        }
 
-        public PaymentStatus getStatus() {
-                return status;
-        }
 
-        public void setStatus(PaymentStatus status) {
-                this.status = status;
-        }
-
-        public LocalDate getPaymentDate() {
-                return paymentDate;
-        }
-
-        public void setPaymentDate(LocalDate paymentDate) {
-                this.paymentDate = paymentDate;
-        }
-
-        public Integer getAmount() {
-                return amount;
-        }
-
-        public void setAmount(Integer amount) {
-                this.amount = amount;
-        }
-
-        public Long getVendorId() {
-                return vendorId;
-        }
-
-        public void setVendorId(Long vendorId) {
-                this.vendorId = vendorId;
-        }
-
-        public Long getUserId() {
-                return userId;
-        }
-
-        public void setUserId(Long userId) {
-                this.userId = userId;
-        }
-
-        public Long getOrderId() {
-                return orderId;
-        }
-
-        public void setOrderId(Long orderId) {
-                this.orderId = orderId;
-        }
-
-        public Long getId() {
-                return id;
-        }
-
-        public void setId(Long id) {
-                this.id = id;
-        }
 }

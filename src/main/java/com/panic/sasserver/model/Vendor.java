@@ -4,9 +4,13 @@ import com.panic.sasserver.enums.VendorStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@Data
 @Entity
 public class Vendor{
         @Id
@@ -25,46 +29,4 @@ public class Vendor{
                 this.joinDate = joinDate;
         }
 
-        public Vendor() {
-        }
-
-        public Long getId() {
-                return id;
-        }
-
-        public void setId(Long id) {
-                this.id = id;
-        }
-
-        public String getName() {
-                return name;
-        }
-
-        public void setName(String name) {
-                this.name = name;
-        }
-
-        public String getContactDetails() {
-                return contactDetails;
-        }
-
-        public void setContactDetails(String contactDetails) {
-                this.contactDetails = contactDetails;
-        }
-
-        public VendorStatus getApprovalStatus() {
-                return approvalStatus;
-        }
-
-        public void setApprovalStatus(VendorStatus approvalStatus) {
-                this.approvalStatus = approvalStatus;
-        }
-
-        public LocalDate getJoinDate() {
-                return joinDate;
-        }
-
-        public void setJoinDate(LocalDate joinDate) {
-                this.joinDate = joinDate;
-        }
 }

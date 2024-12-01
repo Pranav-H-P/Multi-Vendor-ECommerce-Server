@@ -6,10 +6,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
+@NoArgsConstructor
+@Data
 @Entity
 public class AccessRecord{
         @Id
@@ -20,8 +23,6 @@ public class AccessRecord{
         LocalDateTime lastAccessed;
         ActivityType activity;
 
-        public AccessRecord() {
-        }
 
         public AccessRecord(Long userId, DeviceType type, LocalDateTime lastAccessed, ActivityType activity) {
                 this.userId = userId;
@@ -30,43 +31,4 @@ public class AccessRecord{
                 this.activity = activity;
         }
 
-        public Long getId() {
-                return id;
-        }
-
-        public void setId(Long id) {
-                this.id = id;
-        }
-
-        public Long getUserId() {
-                return userId;
-        }
-
-        public void setUserId(Long userId) {
-                this.userId = userId;
-        }
-
-        public DeviceType getType() {
-                return type;
-        }
-
-        public void setType(DeviceType type) {
-                this.type = type;
-        }
-
-        public LocalDateTime getLastAccessed() {
-                return lastAccessed;
-        }
-
-        public void setLastAccessed(LocalDateTime lastAccessed) {
-                this.lastAccessed = lastAccessed;
-        }
-
-        public ActivityType getActivity() {
-                return activity;
-        }
-
-        public void setActivity(ActivityType activity) {
-                this.activity = activity;
-        }
 }
