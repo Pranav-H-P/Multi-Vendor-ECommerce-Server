@@ -1,10 +1,7 @@
 package com.panic.sasserver.model;
 
 import com.panic.sasserver.enums.Rating;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +16,7 @@ public class Review{
         Long id;
         Long productId;
         Long userId;
+        @Enumerated
         Rating rating;
         String comment;
         LocalDate reviewDate;

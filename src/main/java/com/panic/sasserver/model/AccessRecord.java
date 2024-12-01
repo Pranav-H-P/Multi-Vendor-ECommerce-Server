@@ -2,10 +2,7 @@ package com.panic.sasserver.model;
 
 import com.panic.sasserver.enums.ActivityType;
 import com.panic.sasserver.enums.DeviceType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +16,10 @@ public class AccessRecord{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
         Long userId;
+        @Enumerated
         DeviceType type;
         LocalDateTime lastAccessed;
+        @Enumerated
         ActivityType activity;
 
 

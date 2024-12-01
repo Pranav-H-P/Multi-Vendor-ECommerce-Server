@@ -2,6 +2,7 @@ package com.panic.sasserver.model;
 
 import com.panic.sasserver.enums.VendorStatus;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Vendor{
         String name;
         @NotBlank
         String contactDetails;
+        @Enumerated
         VendorStatus approvalStatus;
         LocalDate joinDate;
 

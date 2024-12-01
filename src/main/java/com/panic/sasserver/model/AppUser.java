@@ -1,13 +1,12 @@
 package com.panic.sasserver.model;
 
+import com.panic.sasserver.dto.RegisterDTO;
 import com.panic.sasserver.enums.UserRole;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,9 +18,10 @@ public class AppUser{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
         @NotBlank
-        String username;
+        String name;
         @NotBlank
-        String passwdHash;
+        String passwordHash;
+        @Enumerated
         UserRole role;
         @NotBlank
         @Email
@@ -30,13 +30,21 @@ public class AppUser{
         Long phoneNumber;
         Boolean isActive;
 
-        public AppUser(String username, String passwdHash, UserRole role, String email, Long phoneNumber, Boolean isActive) {
-                this.username = username;
-                this.passwdHash = passwdHash;
+        public AppUser(String name, String passwdHash, UserRole role, String email, Long phoneNumber, Boolean isActive) {
+                this.name = name;
+                this.passwordHash = passwdHash;
                 this.role = role;
                 this.email = email;
                 this.phoneNumber = phoneNumber;
                 this.isActive = isActive;
+        }
+        public AppUser(RegisterDTO newUser){
+                this.name = newUser.getName();
+                this.passwordHash = newUser.getPassword();
+                this.role = newUser.getRole();
+                this.email = newUser.getEmail();
+                this.phoneNumber = newUser.getPhoneNumber();
+                this.isActive = true;
         }
 
 }

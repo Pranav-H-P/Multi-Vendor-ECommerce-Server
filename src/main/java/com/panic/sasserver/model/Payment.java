@@ -1,10 +1,7 @@
 package com.panic.sasserver.model;
 
 import com.panic.sasserver.enums.PaymentStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +19,7 @@ public class Payment{
         Long vendorId;
         Integer amount;
         LocalDate paymentDate;
+        @Enumerated
         PaymentStatus status;
 
         public Payment(PaymentStatus status, LocalDate paymentDate, Integer amount, Long vendorId, Long userId, Long orderId) {

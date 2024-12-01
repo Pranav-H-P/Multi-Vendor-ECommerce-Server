@@ -1,10 +1,7 @@
 package com.panic.sasserver.model;
 
 import com.panic.sasserver.enums.ReportType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +16,7 @@ public class Report{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
         Long vendorId;
+        @Enumerated
         ReportType type;
         @NotBlank
         String data;

@@ -32,8 +32,10 @@ public class TestController {
     }
 
 
+
     @PostConstruct
-    public void test(){
-        userDB.save(new AppUser("Pasdasdv","sdafasdfasd", UserRole.ADMINISTRATOR,"safsadf@gmail.com", 9912313123L,false));
+    public void test(){//testing123 is the password
+        userDB.save(new AppUser("Pranav","$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.ADMINISTRATOR,"pranav@gmail.com", 9912313123L,false));
+
     }
 }
