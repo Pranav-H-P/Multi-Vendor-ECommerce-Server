@@ -6,6 +6,8 @@ import com.panic.sasserver.model.AppUser;
 import com.panic.sasserver.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,7 @@ public class TestController {
     }
     @GetMapping("/{test}")
     public AppUser showOne(@PathVariable Long test){
+
         return userDB.findById(test).orElseThrow(() -> new EntityNotFoundException("User Not Found!"));
     }
 
@@ -35,7 +38,8 @@ public class TestController {
 
     @PostConstruct
     public void test(){//testing123 is the password
-        userDB.save(new AppUser("Pranav","$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.ADMINISTRATOR,"pranav@gmail.com", 9912313123L,false));
+        userDB.save(new AppUser("Pranav","$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.ADMIN,"pranav@gmail.com", 9912313123L,false));
+
 
     }
 }
