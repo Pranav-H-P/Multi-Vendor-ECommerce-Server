@@ -18,12 +18,12 @@ public class Category{
     @NotEmpty
     String name;
     @NotEmpty
-    String Description;
+    String description;
     Long parentId;
 
     public Category(String name, String description, Long parentId) {
         this.name = name;
-        Description = description;
+        this.description = description;
         this.parentId = parentId;
     }
 

@@ -21,18 +21,21 @@ public class CustOrder{
         @NotBlank
         String details;
         @PositiveOrZero
-        Integer amount;
+        Double amount;
         @Enumerated
         OrderStatus status;
         LocalDate orderDate;
+        @NotBlank
+        String address;
 
-        public CustOrder(Long userId, Long vendorId, String details, Integer amount, OrderStatus status, LocalDate orderDate) {
+        public CustOrder(Long userId, Long vendorId, String details, Double amount, OrderStatus status, LocalDate orderDate, String address) {
                 this.userId = userId;
                 this.vendorId = vendorId;
                 this.details = details;
                 this.amount = amount;
                 this.status = status;
                 this.orderDate = orderDate;
+                this.address = address;
         }
 
 }

@@ -17,12 +17,12 @@ public class Payment{
         Long orderId;
         Long userId;
         Long vendorId;
-        Integer amount;
+        Double amount;
         LocalDate paymentDate;
         @Enumerated
         PaymentStatus status;
 
-        public Payment(PaymentStatus status, LocalDate paymentDate, Integer amount, Long vendorId, Long userId, Long orderId) {
+        public Payment(PaymentStatus status, LocalDate paymentDate, Double amount, Long vendorId, Long userId, Long orderId) {
                 this.status = status;
                 this.paymentDate = paymentDate;
                 this.amount = amount;

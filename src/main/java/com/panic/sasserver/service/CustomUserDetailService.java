@@ -6,6 +6,7 @@ import java.util.Collections;
 import com.panic.sasserver.dto.RegisterDTO;
 import com.panic.sasserver.model.AppUser;
 import com.panic.sasserver.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,6 +40,7 @@ public class CustomUserDetailService implements UserDetailsService{
         return user != null;
     }
 
+    @Transactional
     public boolean registerUser(RegisterDTO newUser){
 
         if (userExistsByEmail(newUser.getEmail())){

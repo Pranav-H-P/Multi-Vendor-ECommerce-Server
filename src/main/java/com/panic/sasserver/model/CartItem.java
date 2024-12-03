@@ -17,15 +17,15 @@ public class CartItem{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
         Long userId;
-        Long ProductId;
-        Integer Quantity;
-        LocalDate DateAdded;
+        Long productId;
+        Integer quantity;
+        LocalDate dateAdded;
 
         public CartItem(Long userId, Long productId, Integer quantity, LocalDate dateAdded) {
                 this.userId = userId;
-                ProductId = productId;
-                Quantity = quantity;
-                DateAdded = dateAdded;
+                this.productId = productId;
+                this.quantity = quantity;
+                this.dateAdded = dateAdded;
         }
 
 

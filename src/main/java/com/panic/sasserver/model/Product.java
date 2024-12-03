@@ -27,7 +27,7 @@ public class Product{
         @NotEmpty
         String description;
         @Positive
-        Integer price;
+        Double price;
         Long categoryId;
         @PositiveOrZero
         Integer stock;
@@ -35,7 +35,7 @@ public class Product{
         String images;
         LocalDate createdDate;
 
-        public Product(Long vendorId, String name, String description, Integer price, Long categoryId, Integer stock, String images, LocalDate createdDate) {
+        public Product(Long vendorId, String name, String description, Double price, Long categoryId, Integer stock, String images, LocalDate createdDate) {
                 this.vendorId = vendorId;
                 this.name = name;
                 this.description = description;

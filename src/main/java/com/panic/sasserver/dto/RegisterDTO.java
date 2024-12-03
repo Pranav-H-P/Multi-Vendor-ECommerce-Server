@@ -10,4 +10,5 @@ public class RegisterDTO {
     UserRole role;
     String email;
     Long phoneNumber;
+    String address;
 }

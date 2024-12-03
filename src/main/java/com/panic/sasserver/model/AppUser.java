@@ -29,8 +29,9 @@ public class AppUser{
         @Positive
         Long phoneNumber;
         Boolean isActive;
+        String address;
 
-        public AppUser(String name, String passwdHash, UserRole role, String email, Long phoneNumber, Boolean isActive) {
+        public AppUser(String name, String passwdHash, UserRole role, String email, Long phoneNumber,String address, Boolean isActive) {
                 this.name = name;
                 this.passwordHash = passwdHash;
                 this.role = role;
@@ -45,6 +46,7 @@ public class AppUser{
                 this.email = newUser.getEmail();
                 this.phoneNumber = newUser.getPhoneNumber();
                 this.isActive = true;
+                this.address = newUser.getAddress();
         }
 
 }

@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 .env
 .TODO
+.SampleData
 
 ### STS ###
 .apt_generated

@@ -24,7 +24,8 @@ public class Vendor{
         VendorStatus approvalStatus;
         LocalDate joinDate;
 
-        public Vendor(String name, String contactDetails, VendorStatus approvalStatus, LocalDate joinDate) {
+        public Vendor(Long id, String name, String contactDetails, VendorStatus approvalStatus, LocalDate joinDate) {
+                this.id = id;
                 this.name = name;
                 this.contactDetails = contactDetails;
                 this.approvalStatus = approvalStatus;
