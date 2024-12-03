@@ -1,18 +1,13 @@
 package com.panic.sasserver.controller;
 
-import com.panic.sasserver.dto.AuthResponseDTO;
 import com.panic.sasserver.dto.ProductDTO;
-import com.panic.sasserver.model.Product;
-import com.panic.sasserver.repository.ProductRepository;
+import com.panic.sasserver.dto.SearchCriteriaDTO;
+import com.panic.sasserver.service.ProductSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 
 @RestController
@@ -20,14 +15,38 @@ import java.util.Optional;
 public class ProductController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductSearchService productSearchService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
-        ProductDTO product = productRepository.getDTOFromId(id);
+        ProductDTO product = productSearchService.getDTOFromId(id);
 
         if (product != null) {
             return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // for the simple header search
+    @GetMapping("/search/{term}")
+    public ResponseEntity<List<ProductDTO>> getProductBySearch(@PathVariable String term) {
+        List<ProductDTO> products = productSearchService.getProductSearch(term);;
+
+        if (!products.isEmpty()) {
+            return ResponseEntity.ok(products);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<ProductDTO>> getProductBySearch(@RequestBody SearchCriteriaDTO criteria) {
+
+        List<ProductDTO> products = productSearchService.getProductSearch(criteria);
+
+        if (!products.isEmpty()) {
+            return ResponseEntity.ok(products);
         } else {
             return ResponseEntity.notFound().build();
         }

@@ -81,7 +81,7 @@ public class SampleDBFiller {
          * 14 - Equipment (parent category of 11, 12, 13)
          * */
 
-        userDB.save(new AppUser("Pranav","$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.ADMIN,"pranav@gmail.com", 9912313123L,null,false));
+        userDB.save(new AppUser("PranavAdmin","$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.ADMIN,"pranavadmin@gmail.com", 9912313123L,null,false));
         userDB.save(new AppUser("Arnold", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "arnold@gmail.com", 9876543210L, "123 Olympia Street, Los Angeles, CA", false));
         userDB.save(new AppUser("Wamuu", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "wamuu@gmail.com", 9876543211L, "456 Joestar Avenue, Tokyo, Japan", false));
         userDB.save(new AppUser("The Rock", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "therock@gmail.com", 9876543212L, "789 Hollywood Street, Los Angeles, CA", false));
@@ -96,7 +96,6 @@ public class SampleDBFiller {
         userDB.save(new AppUser("ABC", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "abc@gmail.com", 9876543220L, "789 Main Market, Central Plaza", false));
         userDB.save(new AppUser("StrengthSports", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "strengthsports@gmail.com", 9876543221L, "789 Main Market, Central Plaza", false));
         userDB.save(new AppUser("BarBreaker", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "barbreaker@gmail.com", 9870245221L, "789 Main Market, Central Plaza", false));
-
 
         vendorDB.save(new Vendor(11L, "PMax", "pmax@gmail.com, 9876543218", VendorStatus.APPROVED, LocalDate.of(2024, 5, 1)));
         vendorDB.save(new Vendor(12L, "HeavyDuty", "heavyduty@gmail.com, 9876543219", VendorStatus.APPROVED, LocalDate.of(2024, 6, 15)));
@@ -175,6 +174,7 @@ public class SampleDBFiller {
         reviewDB.save(new Review(5L, 7L, Rating.EXCELLENT, "This is great! Now I can push my limits even more!", LocalDate.now())); // Goku
         reviewDB.save(new Review(5L, 2L, Rating.GOOD, "Solid and durable. Just what I needed.", LocalDate.now())); // Arnold
         reviewDB.save(new Review(5L, 8L, Rating.SATISFACTORY, "Decent. At least it's better than those baby dumbbells.", LocalDate.now())); // Yujiro
+        reviewDB.save(new Review(5L, 10L, Rating.EXCELLENT, "*Wide Smile*", LocalDate.now())); // Big Raga
 
         // Reviews for Product ID 6 - "Olympic Barbell 15kg"
         reviewDB.save(new Review(6L, 6L, Rating.SATISFACTORY, "Good barbell, but feels a little overpriced.", LocalDate.now())); // Todou
@@ -210,6 +210,7 @@ public class SampleDBFiller {
         // Reviews for Product ID 13 - "Weighted Vest 10kg"
         reviewDB.save(new Review(13L, 4L, Rating.EXCELLENT, "Perfect for strength training. Adds just the right amount of challenge.", LocalDate.now())); // The Rock
         reviewDB.save(new Review(13L, 6L, Rating.SATISFACTORY, "Good for short workouts, but I wish it was more adjustable.", LocalDate.now())); // Todou
+        reviewDB.save(new Review(13L, 10L, Rating.POOR, "*Angry Smile*", LocalDate.now())); // Big Raga
         // Reviews for Product ID 14 - "Weighted Vest 15kg"
         reviewDB.save(new Review(14L, 7L, Rating.GOOD, "This is a good vest for added resistance during training. I like it!", LocalDate.now())); // Goku
         reviewDB.save(new Review(14L, 2L, Rating.EXCELLENT, "Great vest, it really adds that extra push to my workout.", LocalDate.now())); // Arnold
@@ -223,16 +224,17 @@ public class SampleDBFiller {
         // Reviews for Product ID 16 - "Yoga Mat"
         reviewDB.save(new Review(16L, 2L, Rating.GOOD, "A good yoga mat. Not something I use, but it seems well made.", LocalDate.now())); // Arnold
         reviewDB.save(new Review(16L, 6L, Rating.EXCELLENT, "Very durable, perfect for stretching and light yoga. Nice quality.", LocalDate.now())); // Todou
+        reviewDB.save(new Review(2L, 10L, Rating.SATISFACTORY, "*Smile*", LocalDate.now())); // Big Raga
 
         // Reviews for Product ID 17 - "Premium Yoga Mat"
         reviewDB.save(new Review(17L, 7L, Rating.GOOD, "Comfortable and supportive. I used it for my warm-up stretches.", LocalDate.now())); // Goku
         reviewDB.save(new Review(17L, 4L, Rating.EXCELLENT, "Thick and durable. Perfect for a good stretch or light exercises.", LocalDate.now())); // The Rock
-        reviewDB.save(new Review(17L, 8L, Rating.POOR, "I don't need this. Yoga mats are for weaklings.", LocalDate.now())); // Yujiro
+        reviewDB.save(new Review(17L, 8L, Rating.POOR, "I don't need this.", LocalDate.now())); // Yujiro
 
         // Reviews for Product ID 18 - "Travel Yoga Mat"
         reviewDB.save(new Review(18L, 6L, Rating.SATISFACTORY, "Good for travel, but I prefer a thicker mat for my usual routine.", LocalDate.now())); // Todou
         reviewDB.save(new Review(18L, 2L, Rating.GOOD, "Compact and easy to store. Great for on-the-go yoga!", LocalDate.now())); // Arnold
-        reviewDB.save(new Review(18L, 8L, Rating.POOR, "This is the worst. Yoga mats are a waste of time.", LocalDate.now())); // Yujiro
+        reviewDB.save(new Review(18L, 8L, Rating.POOR, "This is the worst. Waste of time.", LocalDate.now())); // Yujiro
 
         // Reviews for Product ID 19 - "Lifting Belt Medium"
         reviewDB.save(new Review(19L, 7L, Rating.GOOD, "A good, solid lifting belt. Not as comfortable as I expected, but it works.", LocalDate.now())); // Goku
@@ -242,6 +244,7 @@ public class SampleDBFiller {
         // Reviews for Product ID 20 - "Lifting Belt Large"
         reviewDB.save(new Review(20L, 6L, Rating.SATISFACTORY, "Good size, but the quality could be improved.", LocalDate.now())); // Todou
         reviewDB.save(new Review(20L, 2L, Rating.EXCELLENT, "Great for heavy lifts. Gives me the confidence to push harder.", LocalDate.now())); // Arnold
+        reviewDB.save(new Review(20L, 10L, Rating.EXCELLENT, "*Wide Smile*", LocalDate.now())); // Big Raga
 
         // Reviews for Product ID 21 - "Grip Straps"
         reviewDB.save(new Review(21L, 4L, Rating.EXCELLENT, "A solid pair of grip straps. Makes my lifts easier and more secure.", LocalDate.now())); // The Rock
