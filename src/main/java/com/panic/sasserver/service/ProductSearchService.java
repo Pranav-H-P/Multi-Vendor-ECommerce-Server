@@ -104,17 +104,6 @@ public class ProductSearchService {
         return products;
     }
 
-    public List<ProductDTO> getProductSearch(String searchTerm){
-
-        SearchCriteriaDTO newSearch = new SearchCriteriaDTO();
-
-        newSearch.setSearchTerm(searchTerm);
-        newSearch.setPerPage(defaultLimit);
-        newSearch.setPageNumber(0);
-
-        return getProductSearch(newSearch);
-    }
-
     public ProductDTO getDTOFromId(Long id) {
         return productDB.getDTOFromId(id);
     }

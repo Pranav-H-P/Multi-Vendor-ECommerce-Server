@@ -15,6 +15,7 @@ import java.util.List;
  * product related stuff
  * */
 
+
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
@@ -29,18 +30,6 @@ public class ProductController {
 
         if (product != null) {
             return ResponseEntity.ok(product);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    // for the simple header search
-    @GetMapping("/search/{term}")
-    public ResponseEntity<List<ProductDTO>> getProductBySearch(@PathVariable String term) {
-        List<ProductDTO> products = productSearchService.getProductSearch(term);;
-
-        if (!products.isEmpty()) {
-            return ResponseEntity.ok(products);
         } else {
             return ResponseEntity.notFound().build();
         }
