@@ -51,9 +51,26 @@ public class ImageController {
 
     @GetMapping("/user/{id}") // vendors and users have only one image stored (profile picture)
     @ResponseBody
-    public String getUserImages(@PathVariable Long id){
+    public ResponseEntity<Resource> getUserImages(@PathVariable String id){
+        try {
+            Resource resource = fileSystemService.getImage("users/" + id );
+
+            if (!resource.exists()) {
+                resource = fileSystemService.getImage("users/placeholder.jpg");
+            }
+
+            String contentType = Files.probeContentType(Paths.get(resource.getFile().getPath()));
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, contentType != null ? contentType : "application/octet-stream");
+
+            return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+        } catch (IOException e) { // file not found, return default profile image
 
 
-        return "This works";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+
+
+        }
     }
+
 }

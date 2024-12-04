@@ -6,7 +6,6 @@ import com.panic.sasserver.model.Category;
 import com.panic.sasserver.repository.CategoryRepository;
 import com.panic.sasserver.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -107,4 +106,5 @@ public class ProductSearchService {
     public ProductDTO getDTOFromId(Long id) {
         return productDB.getDTOFromId(id);
     }
+
 }

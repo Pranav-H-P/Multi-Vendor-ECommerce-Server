@@ -16,7 +16,7 @@ public class Review{
         Long id;
         Long productId;
         Long userId;
-        @Enumerated
+        @Enumerated(EnumType.ORDINAL)
         Rating rating;
         String comment;
         LocalDate reviewDate;
