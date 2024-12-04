@@ -12,5 +12,26 @@ public class SearchCriteriaDTO {
     String category;
     Double minPrice;
     Double maxPrice;
-    SearchSortOrder order;
+    SearchSortOrder priceOrder;
+    Integer pageNumber;
+    Integer perPage;
+    SearchSortOrder creationOrder;
 }
+/*
+
+curl -X POST localhost:8080/api/product/search \
+-H "Content-Type: application/json" \
+-d '{
+  "searchTerm": "dumbbell",
+  "vendor": null,
+  "category": null,
+  "minPrice": null,
+  "maxPrice": null,
+  "priceOrder": "NONE",
+  "offset": null,
+  "limit": null,
+  "creationOrder": "NONE"
+}'
+
+
+*/
