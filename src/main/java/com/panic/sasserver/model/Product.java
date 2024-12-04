@@ -31,18 +31,15 @@ public class Product{
         Long categoryId;
         @PositiveOrZero
         Integer stock;
-        @NotEmpty
-        String images;
         LocalDate createdDate;
 
-        public Product(Long vendorId, String name, String description, Double price, Long categoryId, Integer stock, String images, LocalDate createdDate) {
+        public Product(Long vendorId, String name, String description, Double price, Long categoryId, Integer stock, LocalDate createdDate) {
                 this.vendorId = vendorId;
                 this.name = name;
                 this.description = description;
                 this.price = price;
                 this.categoryId = categoryId;
                 this.stock = stock;
-                this.images = images;
                 this.createdDate = createdDate;
         }
 

@@ -87,19 +87,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                     )
                 )
             """)
-    List<ProductDTO> getDTOListByCategory( @Param("searchTerm") String searchTerm, @Param("categoryTerm") String categoryName,
+    List<ProductDTO> getDTOListByCategory( @Param("searchTerm") String searchTerm, @Param("categoryName") String categoryName,
                                            Pageable pageable);
 
     //search with category and vendor
     @Query(value = """
             SELECT
-                p.name AS productName,
-                v.name AS vendorName,
-                p.id AS productId,
-                p.vendorId,
-                p.price,
-                p.description,
-                p.categoryId
+                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId)
             FROM
                 Product p
             JOIN
