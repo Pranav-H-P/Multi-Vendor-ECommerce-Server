@@ -40,7 +40,6 @@ public class ProductSearchService {
         if (criteria.getPerPage() == null){
             criteria.setPerPage(defaultLimit);
         }
-        System.out.println(criteria);
 
         Pageable pageable = PageRequest.of(criteria.getPageNumber(), criteria.getPerPage());
 

@@ -1,6 +1,7 @@
 package com.panic.sasserver.controller;
 
 import com.panic.sasserver.dto.ProductDTO;
+import com.panic.sasserver.dto.ReviewCriteriaDTO;
 import com.panic.sasserver.dto.ReviewDTO;
 import com.panic.sasserver.dto.SearchCriteriaDTO;
 import com.panic.sasserver.model.Category;
@@ -27,12 +28,12 @@ public class ProductController {
     private ProductSearchService productSearchService;
 
     @Autowired
-    ReviewSearchService reviewSearchService;
+    private ReviewSearchService reviewSearchService;
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
         ProductDTO product = productSearchService.getDTOFromId(id);
-
+        product = reviewSearchService.addAverageReviews(product);
 
         if (product != null) {
             return ResponseEntity.ok(product);
@@ -45,6 +46,8 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getProductBySearch(@RequestBody SearchCriteriaDTO criteria) {
 
         List<ProductDTO> products = productSearchService.getProductSearch(criteria);
+
+        products = reviewSearchService.addAverageReviews(products);
 
         if (!products.isEmpty()) {
             return ResponseEntity.ok(products);
@@ -74,9 +77,10 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("/ratings/{ratingId}") // for getting all user reviews for a given product
-    public ResponseEntity<List<ReviewDTO>> getProductReviews(@PathVariable Long ratingId){
-        List<ReviewDTO> reviews = reviewSearchService.findByProductId(ratingId);
+    @PostMapping("/rating") // for getting all user reviews for a given product
+    public ResponseEntity<List<ReviewDTO>> getProductReviews(@RequestBody ReviewCriteriaDTO criteria){
+
+        List<ReviewDTO> reviews = reviewSearchService.findByProductId(criteria);
 
         if (!reviews.isEmpty()) {
             return ResponseEntity.ok(reviews);
