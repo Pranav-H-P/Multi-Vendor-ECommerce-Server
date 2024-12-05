@@ -32,6 +32,8 @@ public class Product{
         @PositiveOrZero
         Integer stock;
         LocalDate createdDate;
+        @PositiveOrZero
+        Long sales;
 
         public Product(Long vendorId, String name, String description, Double price, Long categoryId, Integer stock, LocalDate createdDate) {
                 this.vendorId = vendorId;
@@ -41,6 +43,7 @@ public class Product{
                 this.categoryId = categoryId;
                 this.stock = stock;
                 this.createdDate = createdDate;
+                this.sales = 0L;
         }
 
 }

@@ -2,15 +2,17 @@ package com.panic.sasserver.service;
 
 import com.panic.sasserver.dto.ProductDTO;
 import com.panic.sasserver.dto.SearchCriteriaDTO;
+import com.panic.sasserver.enums.SearchSortOrder;
 import com.panic.sasserver.model.Category;
 import com.panic.sasserver.repository.CategoryRepository;
 import com.panic.sasserver.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,6 +35,7 @@ public class ProductSearchService {
     public List<ProductDTO> getProductSearch(SearchCriteriaDTO criteria){
         String searchTerm = criteria.getSearchTerm();
 
+        List<Sort.Order> orders = new ArrayList<>();
 
         if (criteria.getPageNumber() == null){
             criteria.setPageNumber(0);
@@ -41,28 +44,52 @@ public class ProductSearchService {
             criteria.setPerPage(defaultLimit);
         }
 
-        Pageable pageable = PageRequest.of(criteria.getPageNumber(), criteria.getPerPage());
+        if (criteria.getCreationOrder() != null && criteria.getCreationOrder() != SearchSortOrder.NONE){
+            if (criteria.getCreationOrder() == SearchSortOrder.ASC) {
+                orders.add(Sort.Order.asc("createdDate"));
+            } else if (criteria.getCreationOrder() == SearchSortOrder.DSC) {
+                orders.add(Sort.Order.desc( "createdDate"));
+            }
+        }
+        if (criteria.getPriceOrder() != null && criteria.getPriceOrder() != SearchSortOrder.NONE){
+            if (criteria.getPriceOrder() == SearchSortOrder.ASC) {
+                orders.add(Sort.Order.asc( "price"));
+            } else if (criteria.getPriceOrder() == SearchSortOrder.DSC) {
+                orders.add(Sort.Order.desc("price"));
+            }
+        }
+
+        Sort CustomSort = Sort.by(orders);
+
+        Pageable pageable = PageRequest.of(criteria.getPageNumber(), criteria.getPerPage(), CustomSort);
 
         List<ProductDTO> products;
 
 
         if (criteria.getVendor() != null && criteria.getCategory() != null){
-            System.out.println(1);
-            products = productDB.getDTOListByVendorAndCategory(searchTerm, criteria.getVendor(), criteria.getCategory(), pageable);
+            products = productDB.getDTOListByVendorAndCategory(searchTerm, criteria.getVendor(), criteria.getCategory(),
+                    criteria.getMinPrice(),
+                    criteria.getMaxPrice(),
+                    pageable);
         }else if (criteria.getVendor() != null){
-            System.out.println(2);
-            products = productDB.getDTOListByVendor(searchTerm, criteria.getVendor(), pageable);
+            products = productDB.getDTOListByVendor(searchTerm, criteria.getVendor(),
+                    criteria.getMinPrice(),
+                    criteria.getMaxPrice(),
+                    pageable);
         }else if (criteria.getCategory() != null){
-            System.out.println(3);
-            products = productDB.getDTOListByCategory(searchTerm, criteria.getCategory(), pageable);
+            products = productDB.getDTOListByCategory(searchTerm, criteria.getCategory(),
+                    criteria.getMinPrice(),
+                    criteria.getMaxPrice(),
+                    pageable);
         }else{
-            System.out.println(4);
-            products = productDB.getDTOListFromSearchTerm(searchTerm, pageable);
-            System.out.println(products);
+            products = productDB.getDTOListFromSearchTerm(searchTerm,
+                    criteria.getMinPrice(),
+                    criteria.getMaxPrice(),
+                    pageable);
         }
 
 
-
+        /*
         if (criteria.getMinPrice() != null) {
             products = products.stream()
                     .filter(product -> product.getPrice() >= criteria.getMinPrice())
@@ -96,7 +123,7 @@ public class ProductSearchService {
                         .toList();
                 default -> products;
             };
-        }
+        }*/
 
 
         return products;

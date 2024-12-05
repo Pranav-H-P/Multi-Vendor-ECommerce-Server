@@ -32,6 +32,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/error").permitAll() // remove at end
                         .anyRequest().authenticated()
                 ).sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));

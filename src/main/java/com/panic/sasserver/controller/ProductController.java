@@ -33,7 +33,6 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
         ProductDTO product = productSearchService.getDTOFromId(id);
-        product = reviewSearchService.addAverageReviews(product);
 
         if (product != null) {
             return ResponseEntity.ok(product);
@@ -47,7 +46,6 @@ public class ProductController {
 
         List<ProductDTO> products = productSearchService.getProductSearch(criteria);
 
-        products = reviewSearchService.addAverageReviews(products);
 
         if (!products.isEmpty()) {
             return ResponseEntity.ok(products);

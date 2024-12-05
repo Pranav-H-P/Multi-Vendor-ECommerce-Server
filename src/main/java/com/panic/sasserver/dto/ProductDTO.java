@@ -18,14 +18,4 @@ public class ProductDTO{
     Long categoryId;
     Double averageRating;
 
-    public ProductDTO(String productName, String vendorName, Long productId, Long vendorId, Double price, String description, Long categoryId) {
-        this.productName = productName;
-        this.vendorName = vendorName;
-        this.productId = productId;
-        this.vendorId = vendorId;
-        this.price = price;
-        this.description = description;
-        this.categoryId = categoryId;
-    }
-
 }

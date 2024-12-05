@@ -17,7 +17,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // joins Product table and vendor table
     @Query("""
-            SELECT new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId)
+            SELECT new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
+            (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
             FROM Product p JOIN Vendor v ON p.vendorId = v.id WHERE p.id = :id
             """)
     ProductDTO getDTOFromId(@Param("id") Long id);
@@ -25,7 +26,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // searches based on category name, product name and vendor name
     @Query(value="""
             SELECT
-                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId)
+                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
+                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
             FROM
                 Product p
             JOIN
@@ -36,14 +38,20 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
                 OR LOWER(v.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
                 OR LOWER(c.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                AND (:minPrice IS NULL OR p.price >= :minPrice)
+                AND (:maxPrice IS NULL OR p.price <= :maxPrice)
             """)
-    List<ProductDTO> getDTOListFromSearchTerm(@Param("searchTerm") String searchTerm, Pageable pageable);
+    List<ProductDTO> getDTOListFromSearchTerm(@Param("searchTerm") String searchTerm,
+                                              @Param("minPrice") Double minPrice,
+                                              @Param("maxPrice") Double maxPrice,
+                                              Pageable pageable);
 
 
     // search with vendor filter
     @Query(value = """
             SELECT
-                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId)
+                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
+                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
             FROM
                 Product p
             JOIN
@@ -55,16 +63,21 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             AND (
                 LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
                 OR LOWER(c.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                AND (:minPrice IS NULL OR p.price >= :minPrice)
+                AND (:maxPrice IS NULL OR p.price <= :maxPrice)
             )
             ORDER BY p.id
             """)
     List<ProductDTO> getDTOListByVendor( @Param("searchTerm") String searchTerm, @Param("vendorName") String vendorName,
+                                         @Param("minPrice") Double minPrice,
+                                         @Param("maxPrice") Double maxPrice,
                                          Pageable pageable);
 
     // search with category filter
     @Query(value = """
             SELECT
-                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId)
+                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
+                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
             FROM
                 Product p
             JOIN
@@ -86,14 +99,19 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                         )
                     )
                 )
+                AND (:minPrice IS NULL OR p.price >= :minPrice)
+                AND (:maxPrice IS NULL OR p.price <= :maxPrice)
             """)
     List<ProductDTO> getDTOListByCategory( @Param("searchTerm") String searchTerm, @Param("categoryName") String categoryName,
+                                           @Param("minPrice") Double minPrice,
+                                           @Param("maxPrice") Double maxPrice,
                                            Pageable pageable);
 
     //search with category and vendor
     @Query(value = """
             SELECT
-                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId)
+                new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
+                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
             FROM
                 Product p
             JOIN
@@ -115,10 +133,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                     )
                 )
                 AND LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                AND (:minPrice IS NULL OR p.price >= :minPrice)
+                AND (:maxPrice IS NULL OR p.price <= :maxPrice)
             
             """)
     List<ProductDTO> getDTOListByVendorAndCategory( @Param("searchTerm") String searchTerm, @Param("vendorName") String vendorName,
                                                     @Param("categoryName") String categoryName,
+                                                    @Param("minPrice") Double minPrice,
+                                                    @Param("maxPrice") Double maxPrice,
                                                     Pageable pageable);
 
 }
