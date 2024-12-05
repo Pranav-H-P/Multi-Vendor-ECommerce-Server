@@ -18,7 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // joins Product table and vendor table
     @Query("""
             SELECT new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-            (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
+            (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1, p.sales, p.stock)
             FROM Product p JOIN Vendor v ON p.vendorId = v.id WHERE p.id = :id
             """)
     ProductDTO getDTOFromId(@Param("id") Long id);
@@ -27,13 +27,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value="""
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
+                ar.avgRating + 1, p.sales, p.stock)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
+            JOIN (
+                    SELECT r.productId AS pId, AVG(r.rating) AS avgRating
+                    FROM Review r
+                    GROUP BY r.productId
+                ) ar ON ar.pId = p.id
             WHERE
                 LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
                 OR LOWER(v.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
@@ -51,13 +56,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = """
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
+                ar.avgRating + 1, p.sales, p.stock)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
+            JOIN (
+                    SELECT r.productId AS pId, AVG(r.rating) AS avgRating
+                    FROM Review r
+                    GROUP BY r.productId
+                ) ar ON ar.pId = p.id
             WHERE
                 v.name = :vendorName
             AND (
@@ -77,13 +87,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = """
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
+                ar.avgRating + 1, p.sales, p.stock)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
+            JOIN (
+                    SELECT r.productId AS pId, AVG(r.rating) AS avgRating
+                    FROM Review r
+                    GROUP BY r.productId
+                ) ar ON ar.pId = p.id
             WHERE
                 (LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
                 OR LOWER(v.name) LIKE LOWER(CONCAT('%', :searchTerm, '%')))
@@ -111,13 +126,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = """
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1)
+                ar.avgRating + 1, p.sales, p.stock)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
+            JOIN (
+                    SELECT r.productId AS pId, AVG(r.rating) AS avgRating
+                    FROM Review r
+                    GROUP BY r.productId
+                ) ar ON ar.pId = p.id
             WHERE
                 v.name = :vendorName
                 AND (

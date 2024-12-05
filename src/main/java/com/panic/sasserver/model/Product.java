@@ -30,12 +30,12 @@ public class Product{
         Double price;
         Long categoryId;
         @PositiveOrZero
-        Integer stock;
+        Long stock;
         LocalDate createdDate;
         @PositiveOrZero
         Long sales;
 
-        public Product(Long vendorId, String name, String description, Double price, Long categoryId, Integer stock, LocalDate createdDate) {
+        public Product(Long vendorId, String name, String description, Double price, Long categoryId, Long stock, LocalDate createdDate) {
                 this.vendorId = vendorId;
                 this.name = name;
                 this.description = description;

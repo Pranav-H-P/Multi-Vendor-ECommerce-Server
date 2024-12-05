@@ -18,11 +18,12 @@ public class SearchCriteriaDTO {
     SearchSortOrder creationOrder;
     SearchSortOrder ratingOrder;
     SearchSortOrder salesOrder;
+    SearchSortOrder stockOrder;
 }
 /*
 
 curl -X POST \
-  http://localhost:8080/api/products/search \
+  http://localhost:8080/api/product/search \
   -H "Content-Type: application/json" \
   -d '{
     "searchTerm": "dumb",
@@ -30,9 +31,12 @@ curl -X POST \
     "category": null,
     "minPrice": 700.0,
     "maxPrice": 2000.0,
-    "priceOrder": "ASC",
+    "priceOrder": null,
     "pageNumber": 0,
     "perPage": 10,
-    "creationOrder": "ASC"
+    "creationOrder": null,
+    "ratingOrder" :null,
+    "salesOrder": null,
+    "stockOrder": "ASC"
   }'
 */

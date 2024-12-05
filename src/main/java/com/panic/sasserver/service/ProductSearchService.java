@@ -44,6 +44,29 @@ public class ProductSearchService {
             criteria.setPerPage(defaultLimit);
         }
 
+        // filters
+
+        if (criteria.getPriceOrder() != null && criteria.getPriceOrder() != SearchSortOrder.NONE) {
+            if (criteria.getPriceOrder() == SearchSortOrder.ASC) {
+                orders.add(Sort.Order.asc("price"));
+            } else if (criteria.getPriceOrder() == SearchSortOrder.DSC) {
+                orders.add(Sort.Order.desc("price"));
+            }
+        }
+        if (criteria.getRatingOrder() != null && criteria.getRatingOrder() != SearchSortOrder.NONE){
+            if (criteria.getRatingOrder() == SearchSortOrder.ASC) {
+                orders.add(Sort.Order.asc("ar.avgRating"));
+            } else if (criteria.getRatingOrder() == SearchSortOrder.DSC) {
+                orders.add(Sort.Order.desc( "ar.avgRating"));
+            }
+        }
+        if (criteria.getSalesOrder() != null && criteria.getSalesOrder() != SearchSortOrder.NONE){
+            if (criteria.getSalesOrder() == SearchSortOrder.ASC) {
+                orders.add(Sort.Order.asc("sales"));
+            } else if (criteria.getSalesOrder() == SearchSortOrder.DSC) {
+                orders.add(Sort.Order.desc( "sales"));
+            }
+        }
         if (criteria.getCreationOrder() != null && criteria.getCreationOrder() != SearchSortOrder.NONE){
             if (criteria.getCreationOrder() == SearchSortOrder.ASC) {
                 orders.add(Sort.Order.asc("createdDate"));
@@ -51,11 +74,12 @@ public class ProductSearchService {
                 orders.add(Sort.Order.desc( "createdDate"));
             }
         }
-        if (criteria.getPriceOrder() != null && criteria.getPriceOrder() != SearchSortOrder.NONE){
-            if (criteria.getPriceOrder() == SearchSortOrder.ASC) {
-                orders.add(Sort.Order.asc( "price"));
-            } else if (criteria.getPriceOrder() == SearchSortOrder.DSC) {
-                orders.add(Sort.Order.desc("price"));
+
+        if (criteria.getStockOrder() != null && criteria.getStockOrder() != SearchSortOrder.NONE){
+            if (criteria.getStockOrder() == SearchSortOrder.ASC) {
+                orders.add(Sort.Order.asc("stock"));
+            } else if (criteria.getStockOrder() == SearchSortOrder.DSC) {
+                orders.add(Sort.Order.desc( "stock"));
             }
         }
 
