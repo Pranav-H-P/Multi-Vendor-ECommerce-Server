@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import com.panic.sasserver.service.CustomUserDetailService;
 import com.panic.sasserver.service.JwtService;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

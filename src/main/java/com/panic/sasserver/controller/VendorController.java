@@ -15,6 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 
+/*vendor related endpoints
+*
+*
+* /id is accessible to the public, everything else requires authorization
+* */
+
 @RestController
 @RequestMapping("/api/vendor")
 public class VendorController {
