@@ -149,6 +149,57 @@ public class SampleDBFiller {
         productDB.save(new Product(15L, "Leg Press Machine", "High-quality leg press machine", 85000.0, 10L, 2L,  LocalDate.now()));
         productDB.save(new Product(15L, "Cable Crossover Machine", "Versatile cable crossover machine", 95000.0, 10L, 1L, LocalDate.now()));
 
+        productDB.save(new Product(11L, "Hex Dumbbell 20kg", "Durable rubber-coated 20kg hex dumbbell", 3500.0, 1L, 12L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 25kg", "Durable rubber-coated 25kg hex dumbbell", 4000.0, 1L, 10L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 30kg", "Durable rubber-coated 30kg hex dumbbell", 4500.0, 1L, 8L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 35kg", "Durable rubber-coated 35kg hex dumbbell", 5000.0, 1L, 6L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 40kg", "Durable rubber-coated 40kg hex dumbbell", 5500.0, 1L, 12L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 45kg", "Durable rubber-coated 45kg hex dumbbell", 6000.0, 1L, 10L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 50kg", "Durable rubber-coated 50kg hex dumbbell", 6500.0, 1L, 8L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 55kg", "Durable rubber-coated 55kg hex dumbbell", 7000.0, 1L, 6L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 60kg", "Durable rubber-coated 60kg hex dumbbell", 7500.0, 1L, 6L, LocalDate.now()));
+
+        productDB.save(new Product(11L, "Hex Dumbbell 5kg Set of 4", "Durable rubber-coated 5kg hex dumbbell", 750.0*2, 1L, 12L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 7.5kg Set of 4", "Durable rubber-coated 7.5kg hex dumbbell", 1125.0*2, 1L, 10L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 10kg Set of 4", "Durable rubber-coated 10kg hex dumbbell", 1500.0*2, 1L, 8L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 15kg Set of 4", "Durable rubber-coated 15kg hex dumbbell", 2250.0*2, 1L, 6L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 20kg Set of 4", "Durable rubber-coated 20kg hex dumbbell", 3500.0*2, 1L, 12L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 25kg Set of 4", "Durable rubber-coated 25kg hex dumbbell", 4000.0*2, 1L, 10L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 30kg Set of 4", "Durable rubber-coated 30kg hex dumbbell", 4500.0*2, 1L, 8L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 35kg Set of 4", "Durable rubber-coated 35kg hex dumbbell", 5000.0*2, 1L, 6L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 40kg Set of 4", "Durable rubber-coated 40kg hex dumbbell", 5500.0*2, 1L, 12L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 45kg Set of 4", "Durable rubber-coated 45kg hex dumbbell", 6000.0*2, 1L, 10L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 50kg Set of 4", "Durable rubber-coated 50kg hex dumbbell", 6500.0*2, 1L, 8L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 55kg Set of 4", "Durable rubber-coated 55kg hex dumbbell", 7000.0*2, 1L, 6L, LocalDate.now()));
+        productDB.save(new Product(11L, "Hex Dumbbell 60kg Set of 4", "Durable rubber-coated 60kg hex dumbbell", 7500.0*2, 1L, 6L, LocalDate.now()));
+        productDB.save(new Product(12L, "Olympic Barbell 20kg Set of 2", "High-quality 20kg Olympic barbell", 12000.0*2, 2L, 5L, LocalDate.now()));
+        productDB.save(new Product(12L, "Olympic Barbell 15kg Set of 2", "High-quality 15kg Olympic barbell", 8000.0*2, 2L, 7L, LocalDate.now()));
+        productDB.save(new Product(12L, "EZ Curl Barbell 10kg Set of 2", "Curved 10kg EZ curl barbell for arm exercises", 4500.0*2, 2L, 7L, LocalDate.now()));
+        productDB.save(new Product(13L, "Weight Plate 2.5kg Set of 4", "Rubber-coated 2.5kg weight plate", 500.0*2, 3L, 25L, LocalDate.now()));
+        productDB.save(new Product(13L, "Weight Plate 5kg Set of 4", "Rubber-coated 5kg weight plate", 1000.0*2, 3L, 20L, LocalDate.now()));
+        productDB.save(new Product(13L, "Weight Plate 10kg Set of 4", "Rubber-coated 10kg weight plate", 2000.0*2, 3L, 15L, LocalDate.now()));
+        productDB.save(new Product(13L, "Weight Plate 20kg Set of 4", "Rubber-coated 20kg weight plate", 4000.0*2, 3L, 10L, LocalDate.now()));
+        productDB.save(new Product(14L, "Weighted Vest 5kg Set of 2", "Adjustable 5kg weighted vest", 2500.0*2, 4L, 8L, LocalDate.now()));
+        productDB.save(new Product(14L, "Weighted Vest 10kg Set of 2", "Adjustable 10kg weighted vest", 3500.0*2, 4L, 6L, LocalDate.now()));
+        productDB.save(new Product(14L, "Weighted Vest 15kg Set of 2", "Adjustable 15kg weighted vest", 4500.0*2, 4L, 4L, LocalDate.now()));
+        productDB.save(new Product(14L, "Weighted Ankle Cuffs 2kg Set of 4", "Adjustable 2kg weighted ankle cuffs", 1200.0*2, 4L, 10L, LocalDate.now()));
+        productDB.save(new Product(13L, "Yoga Mat Set of 2", "Eco-friendly non-slip yoga mat", 1000.0*2, 5L, 15L, LocalDate.now()));
+        productDB.save(new Product(13L, "Premium Yoga Mat Set of 2", "Extra thick and durable yoga mat", 1500.0*2, 5L, 10L, LocalDate.now()));
+        productDB.save(new Product(12L, "Travel Yoga Mat Set of 2", "Lightweight and compact yoga mat", 800.0*2, 5L, 12L, LocalDate.now()));
+        productDB.save(new Product(12L, "Lifting Belt Medium Set of 2", "Leather lifting belt for medium builds", 1800.0*2, 6L, 10L, LocalDate.now()));
+        productDB.save(new Product(12L, "Lifting Belt Large Set of 2", "Leather lifting belt for large builds", 2000.0*2, 6L, 8L, LocalDate.now()));
+        productDB.save(new Product(14L, "Grip Straps Set of 2", "Heavy-duty lifting straps for grip support", 700.0*2, 7L, 20L, LocalDate.now()));
+        productDB.save(new Product(14L, "Lifting Gloves Set of 2", "Padded gloves for extra grip and comfort", 1200.0*2, 7L, 15L, LocalDate.now()));
+        productDB.save(new Product(11L, "Power Rack Set of 2", "Heavy-duty power rack for advanced lifters", 45000.0*2, 8L, 3L, LocalDate.now()));
+        productDB.save(new Product(12L, "Compact Power Rack Set of 2", "Compact and affordable power rack", 35000.0*2, 8L, 5L, LocalDate.now()));
+        productDB.save(new Product(15L, "Flat Bench Set of 2", "Sturdy flat bench for bench presses", 12000.0*2, 9L, 6L, LocalDate.now()));
+        productDB.save(new Product(15L, "Incline Bench Set of 2", "Adjustable incline bench", 15000.0*2, 9L, 4L, LocalDate.now()));
+        productDB.save(new Product(15L, "Adjustable Bench Set of 2", "Flat and incline bench in one", 18000.0*2, 9L, 3L, LocalDate.now()));
+        productDB.save(new Product(15L, "Lat Pulldown Machine Set of 2", "Multi-purpose lat pulldown machine", 65000.0*2, 10L, 2L, LocalDate.now()));
+        productDB.save(new Product(15L, "Leg Press Machine Set of 2", "High-quality leg press machine", 85000.0*2, 10L, 2L,  LocalDate.now()));
+        productDB.save(new Product(15L, "Cable Crossover Machine Set of 2", "Versatile cable crossover machine", 95000.0*2, 10L, 1L, LocalDate.now()));
+        System.out.println("worked??");
+
         // Example: Reviews for Product ID 1 - "Hex Dumbbell 5kg"
         reviewDB.save(new Review(1L, 2L, Rating.EXCELLENT, "Perfect for my morning workouts. Solid and durable!", LocalDate.now())); // Arnold
         reviewDB.save(new Review(1L, 3L, Rating.GOOD, "The weight is balanced. Good for training, but I wish the grip was softer.", LocalDate.now())); // Wamuu

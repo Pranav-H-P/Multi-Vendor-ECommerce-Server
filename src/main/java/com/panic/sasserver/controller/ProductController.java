@@ -43,7 +43,7 @@ public class ProductController {
 
     @PostMapping("/search")
     public ResponseEntity<List<ProductDTO>> getProductBySearch(@RequestBody SearchCriteriaDTO criteria) {
-
+        System.out.println(criteria);
         List<ProductDTO> products = productSearchService.getProductSearch(criteria);
 
 
@@ -75,7 +75,7 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
-    @PostMapping("/rating") // for getting all user reviews for a given product
+    @PostMapping("/review") // for getting all user reviews for a given product
     public ResponseEntity<List<ReviewDTO>> getProductReviews(@RequestBody ReviewCriteriaDTO criteria){
 
         List<ReviewDTO> reviews = reviewSearchService.findByProductId(criteria);

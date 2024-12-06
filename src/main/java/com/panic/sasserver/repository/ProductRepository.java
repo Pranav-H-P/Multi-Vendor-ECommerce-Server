@@ -18,8 +18,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // joins Product table and vendor table
     @Query("""
             SELECT new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-            (SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id) + 1, p.sales, p.stock)
-            FROM Product p JOIN Vendor v ON p.vendorId = v.id WHERE p.id = :id
+            COALESCE((SELECT AVG(r.rating) FROM Review r WHERE r.productId = p.id), NULL) + 1, p.sales, p.stock, c.name)
+            FROM Product p
+            JOIN Vendor v ON p.vendorId = v.id
+            JOIN Category c ON p.categoryId = c.id
+            WHERE p.id = :id
             """)
     ProductDTO getDTOFromId(@Param("id") Long id);
 
@@ -27,14 +30,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value="""
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                ar.avgRating + 1, p.sales, p.stock)
+                ar.avgRating + 1, p.sales, p.stock, c.name)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
-            JOIN (
+            LEFT JOIN (
                     SELECT r.productId AS pId, AVG(r.rating) AS avgRating
                     FROM Review r
                     GROUP BY r.productId
@@ -56,14 +59,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = """
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                ar.avgRating + 1, p.sales, p.stock)
+                ar.avgRating + 1, p.sales, p.stock, c.name)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
-            JOIN (
+            LEFT JOIN (
                     SELECT r.productId AS pId, AVG(r.rating) AS avgRating
                     FROM Review r
                     GROUP BY r.productId
@@ -87,14 +90,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = """
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                ar.avgRating + 1, p.sales, p.stock)
+                ar.avgRating + 1, p.sales, p.stock, c.name)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
-            JOIN (
+            LEFT JOIN (
                     SELECT r.productId AS pId, AVG(r.rating) AS avgRating
                     FROM Review r
                     GROUP BY r.productId
@@ -126,14 +129,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = """
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
-                ar.avgRating + 1, p.sales, p.stock)
+                ar.avgRating + 1, p.sales, p.stock, c.name)
             FROM
                 Product p
             JOIN
                 Vendor v ON p.vendorId = v.id
             JOIN
                 Category c ON p.categoryId = c.id
-            JOIN (
+            LEFT JOIN (
                     SELECT r.productId AS pId, AVG(r.rating) AS avgRating
                     FROM Review r
                     GROUP BY r.productId

@@ -19,4 +19,5 @@ public class ProductDTO{
     Double averageRating;
     Long sales;
     Long stock;
+    String categoryName;
 }

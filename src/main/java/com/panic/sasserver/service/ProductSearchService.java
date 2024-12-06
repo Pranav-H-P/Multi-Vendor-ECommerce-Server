@@ -33,6 +33,7 @@ public class ProductSearchService {
     }
 
     public List<ProductDTO> getProductSearch(SearchCriteriaDTO criteria){
+
         String searchTerm = criteria.getSearchTerm();
 
         List<Sort.Order> orders = new ArrayList<>();
@@ -89,7 +90,7 @@ public class ProductSearchService {
 
         List<ProductDTO> products;
 
-
+        System.out.println("in rep:"+criteria);
         if (criteria.getVendor() != null && criteria.getCategory() != null){
             products = productDB.getDTOListByVendorAndCategory(searchTerm, criteria.getVendor(), criteria.getCategory(),
                     criteria.getMinPrice(),
