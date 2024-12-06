@@ -43,7 +43,6 @@ public class ProductController {
 
     @PostMapping("/search")
     public ResponseEntity<List<ProductDTO>> getProductBySearch(@RequestBody SearchCriteriaDTO criteria) {
-        System.out.println(criteria);
         List<ProductDTO> products = productSearchService.getProductSearch(criteria);
 
 

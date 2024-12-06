@@ -20,15 +20,18 @@ public class Vendor{
         String name;
         @NotBlank
         String contactDetails;
+        @NotBlank
+        String description;
         @Enumerated
         VendorStatus approvalStatus;
         LocalDate joinDate;
 
-        public Vendor(Long id, String name, String contactDetails, VendorStatus approvalStatus, LocalDate joinDate) {
+        public Vendor(Long id, String name, String contactDetails, String description, VendorStatus approvalStatus, LocalDate joinDate) {
                 this.id = id;
                 this.name = name;
                 this.contactDetails = contactDetails;
                 this.approvalStatus = approvalStatus;
+                this.description = description;
                 this.joinDate = joinDate;
         }
 

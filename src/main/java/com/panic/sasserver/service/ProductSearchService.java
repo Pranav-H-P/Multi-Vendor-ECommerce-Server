@@ -84,13 +84,12 @@ public class ProductSearchService {
             }
         }
 
-        Sort CustomSort = Sort.by(orders);
+        Sort customSort = Sort.by(orders);
 
-        Pageable pageable = PageRequest.of(criteria.getPageNumber(), criteria.getPerPage(), CustomSort);
+        Pageable pageable = PageRequest.of(criteria.getPageNumber(), criteria.getPerPage(), customSort);
 
         List<ProductDTO> products;
 
-        System.out.println("in rep:"+criteria);
         if (criteria.getVendor() != null && criteria.getCategory() != null){
             products = productDB.getDTOListByVendorAndCategory(searchTerm, criteria.getVendor(), criteria.getCategory(),
                     criteria.getMinPrice(),

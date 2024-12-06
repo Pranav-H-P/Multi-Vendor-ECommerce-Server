@@ -53,8 +53,9 @@ public class ImageController {
     @ResponseBody
     public ResponseEntity<Resource> getUserImages(@PathVariable String id){
         try {
-            Resource resource = fileSystemService.getImage("users/" + id );
 
+            Resource resource = fileSystemService.getImage("users/" + id + ".jpg"); // all user images are stored as jpg
+            
             if (!resource.exists()) {
                 resource = fileSystemService.getImage("users/placeholder.jpg");
             }

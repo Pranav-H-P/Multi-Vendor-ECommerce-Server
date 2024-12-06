@@ -7,9 +7,7 @@ import java.util.Date;
 @Data
 public class CartItemDTO {
     Long userId;
-    Long productId;
-    String productName;
+    ProductDTO product;
     Integer quantity;
-    Double price;
     Date dateAdded;
 }

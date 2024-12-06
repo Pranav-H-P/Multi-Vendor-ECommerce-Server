@@ -17,7 +17,7 @@ public class CustOrder{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id;
         Long userId;
-        Long vendorId;
+        Long productId;
         @NotBlank
         String details;
         @PositiveOrZero
@@ -28,9 +28,9 @@ public class CustOrder{
         @NotBlank
         String address;
 
-        public CustOrder(Long userId, Long vendorId, String details, Double amount, OrderStatus status, LocalDate orderDate, String address) {
+        public CustOrder(Long userId, Long productId, String details, Double amount, OrderStatus status, LocalDate orderDate, String address) {
                 this.userId = userId;
-                this.vendorId = vendorId;
+                this.productId = productId;
                 this.details = details;
                 this.amount = amount;
                 this.status = status;
