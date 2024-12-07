@@ -37,6 +37,7 @@ public class AppUser{
                 this.role = role;
                 this.email = email;
                 this.phoneNumber = phoneNumber;
+                this.address = address;
                 this.isActive = isActive;
         }
         public AppUser(RegisterDTO newUser){

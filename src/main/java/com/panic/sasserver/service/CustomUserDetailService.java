@@ -82,4 +82,9 @@ public class CustomUserDetailService implements UserDetailsService{
 
         return user;
     }
+
+    @Transactional
+    public Boolean updateUserAddress(String email, String address){
+        return userDB.updateAddressByEmail(email, address);
+    }
 }
