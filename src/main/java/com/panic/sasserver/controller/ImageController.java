@@ -1,5 +1,6 @@
 package com.panic.sasserver.controller;
 
+import com.panic.sasserver.service.CustomUserDetailService;
 import com.panic.sasserver.service.FileSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +8,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,11 +32,15 @@ public class ImageController {
     @Value("${upload.dir}")
     private String uploadDir;
 
+
+    private CustomUserDetailService userDetailService;
+
     @GetMapping("/product/{id}")
     public ResponseEntity<List<String>> getProductImageNames(@PathVariable Long id) {
         List<String> imageNames = fileSystemService.listImages("products/" + id);
         return ResponseEntity.ok(imageNames);
     }
+
 
     @GetMapping("/product/{id}/{name}")
     @ResponseBody
@@ -56,9 +62,12 @@ public class ImageController {
         }
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/uploaduserimage")
-    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("id") Long id) {
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
+
+
 
             String originalFilename = file.getOriginalFilename();
             if (originalFilename == null || (!originalFilename.toLowerCase().endsWith(".png") && !originalFilename.toLowerCase().endsWith(".jpg"))) {
@@ -74,12 +83,12 @@ public class ImageController {
             }
 
 
-            String outputFilename = id + ".jpg";
+            String outputFilename = userDetailService.getCurrentUserId() + ".jpg";
             Path targetPath = uploadPath.resolve(outputFilename);
             File outputFile = targetPath.toFile();
 
 
-            ImageIO.write(originalImage, "jpg", outputFile);
+            ImageIO.write(originalImage, "jpg", outputFile); // converting to jpg before saving
 
             return ResponseEntity.ok("File uploaded successfully: " + targetPath);
         } catch (IOException e) {
@@ -88,7 +97,7 @@ public class ImageController {
         }
     }
 
-
+    @PreAuthorize("hasAuthority('VENDOR')")
     @PostMapping("/uploadproductimages")
     public ResponseEntity<String> uploadAndConvertMultipleToJpg(
             @RequestParam("files") List<MultipartFile> files,

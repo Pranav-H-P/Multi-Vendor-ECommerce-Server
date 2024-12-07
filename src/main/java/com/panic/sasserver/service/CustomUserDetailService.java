@@ -13,7 +13,9 @@ import com.panic.sasserver.repository.UserRepository;
 import com.panic.sasserver.repository.VendorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -86,5 +88,13 @@ public class CustomUserDetailService implements UserDetailsService{
     @Transactional
     public Boolean updateUserAddress(String email, String address){
         return userDB.updateAddressByEmail(email, address);
+    }
+
+    public Long getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = authentication.getName();
+        AppUser user = userDB.findByEmail(userEmail);
+
+        return user.getId();
     }
 }
