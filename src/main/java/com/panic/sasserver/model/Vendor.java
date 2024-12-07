@@ -20,7 +20,6 @@ public class Vendor{
         String name;
         @NotBlank
         String contactDetails;
-        @NotBlank
         String description;
         @Enumerated
         VendorStatus approvalStatus;

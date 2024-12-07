@@ -141,26 +141,23 @@ public class SampleDBFiller {
 
 
 
-        vendorDB.save(new Vendor(11L, "PMax", "pmax@gmail.com, 9876543218", lorem,VendorStatus.APPROVED, LocalDate.of(2024, 5, 1)));
-        vendorDB.save(new Vendor(12L, "Heavy Duty", "heavyduty@gmail.com, 9876543219", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 6, 15)));
-        vendorDB.save(new Vendor(13L, "ABC", "abc@gmail.com, 9876543220", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 7, 10)));
-        vendorDB.save(new Vendor(14L, "Strength Sports", "strengthsports@gmail.com, 9876543221", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 8, 20)));
-        vendorDB.save(new Vendor(15L, "Bar Breaker", "barbreaker@gmail.com, 9876543222", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 9, 25)));
+        vendorDB.save(new Vendor(11L, "PMax", "pmax@gmail.com,9876543218", lorem,VendorStatus.APPROVED, LocalDate.of(2024, 5, 1)));
+        vendorDB.save(new Vendor(12L, "Heavy Duty", "heavyduty@gmail.com,9876543219", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 6, 15)));
+        vendorDB.save(new Vendor(13L, "ABC", "abc@gmail.com,9876543220", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 7, 10)));
+        vendorDB.save(new Vendor(14L, "Strength Sports", "strengthsports@gmail.com,9876543221", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 8, 20)));
+        vendorDB.save(new Vendor(15L, "Bar Breaker", "barbreaker@gmail.com,9876543222", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 9, 25)));
 
 
-        categoryDB.save(new Category("Dumbbells", "Various weights of dumbbells", 11L));
-        categoryDB.save(new Category("Barbells", "Standard and Olympic barbells", 11L));
-        categoryDB.save(new Category("Weight Plates", "Plates for lifting and machines", 11L));
-        categoryDB.save(new Category("Weighted Clothing", "Weighted cuffs, vests, etc.", 11L));
-        categoryDB.save(new Category("Yoga Mat", "Comfortable and durable yoga mats", 12L));
-        categoryDB.save(new Category("Lifting Belts", "Belts for back support during lifts", 12L));
-        categoryDB.save(new Category("Lifting Straps/Gloves", "Grip aids for lifting", 12L));
-        categoryDB.save(new Category("Power Rack", "Essential for heavy lifting", 13L));
-        categoryDB.save(new Category("Bench", "Flat and incline benches", 13L));
-        categoryDB.save(new Category("Machines", "Various gym machines", 13L));
-        categoryDB.save(new Category("Weights", "Parent category for lifting equipment", null));
-        categoryDB.save(new Category("Accessories", "Parent category for gym accessories", null));
-        categoryDB.save(new Category("Equipment", "Parent category for gym equipment", null));
+        categoryDB.save(new Category("Dumbbells", "Various weights of dumbbells", null));
+        categoryDB.save(new Category("Barbells", "Standard and Olympic barbells", null));
+        categoryDB.save(new Category("Weight Plates", "Plates for lifting and machines", null));
+        categoryDB.save(new Category("Weighted Clothing", "Weighted cuffs, vests, etc.", null));
+        categoryDB.save(new Category("Yoga Mat", "Comfortable and durable yoga mats", null));
+        categoryDB.save(new Category("Lifting Belts", "Belts for back support during lifts", null));
+        categoryDB.save(new Category("Lifting Straps/Gloves", "Grip aids for lifting", null));
+        categoryDB.save(new Category("Power Rack", "Essential for heavy lifting", null));
+        categoryDB.save(new Category("Bench", "Flat and incline benches", null));
+        categoryDB.save(new Category("Machines", "Various gym machines", null));
 
         productDB.save(new Product(11L, "Hex Dumbbell 5kg", "Durable rubber-coated 5kg hex dumbbell", 750.0, 1L, 12L, LocalDate.now()));
         productDB.save(new Product(11L, "Hex Dumbbell 7.5kg", "Durable rubber-coated 7.5kg hex dumbbell", 1125.0, 1L, 10L, LocalDate.now()));

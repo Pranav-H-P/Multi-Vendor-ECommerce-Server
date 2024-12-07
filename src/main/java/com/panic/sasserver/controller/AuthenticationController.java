@@ -42,7 +42,7 @@ public class AuthenticationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()") // requires token to check the token obviously
     @PostMapping("/testtoken") // checks if old token is expired, if not gives a new token to extend session
     public ResponseEntity<AuthResponseDTO> testRefresh(){ // if it throws a forbidden request, it has expired
 
@@ -88,9 +88,9 @@ public class AuthenticationController {
             return ResponseEntity.ok(new AuthResponseDTO(jwt, null));
 
         }catch(Exception e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new AuthResponseDTO(null, "Invalid username or password " + e.getMessage()));
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new AuthResponseDTO(null, "Internal error "));
         }
     }
 

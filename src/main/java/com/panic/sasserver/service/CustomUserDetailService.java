@@ -1,11 +1,16 @@
 package com.panic.sasserver.service;
 
 
+import java.time.LocalDate;
 import java.util.Collections;
 
 import com.panic.sasserver.dto.RegisterDTO;
+import com.panic.sasserver.enums.UserRole;
+import com.panic.sasserver.enums.VendorStatus;
 import com.panic.sasserver.model.AppUser;
+import com.panic.sasserver.model.Vendor;
 import com.panic.sasserver.repository.UserRepository;
+import com.panic.sasserver.repository.VendorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,11 +24,14 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailService implements UserDetailsService{
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userDB;
+
+    @Autowired
+    private VendorRepository vendorDB;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        AppUser user = userRepository.findByEmail(email);
+        AppUser user = userDB.findByEmail(email);
 
         if(user == null) {
             throw new UsernameNotFoundException("User not found with email: " + email);
@@ -35,7 +43,7 @@ public class CustomUserDetailService implements UserDetailsService{
 
     public boolean userExistsByEmail(String email){
 
-        AppUser user = userRepository.findByEmail(email);
+        AppUser user = userDB.findByEmail(email);
 
         return user != null;
     }
@@ -47,14 +55,29 @@ public class CustomUserDetailService implements UserDetailsService{
             return false;
         }
 
+
+
         AppUser user = new AppUser(newUser);
-        userRepository.save(user);
+        userDB.save(user);
+
+        if (newUser.getRole() == UserRole.VENDOR){
+            Vendor vendor = new Vendor(user.getId(),
+                    user.getName(),
+                    user.getEmail() + "," + user.getPhoneNumber(),
+                    "",
+                    VendorStatus.PENDING,
+                    LocalDate.now());
+
+            vendorDB.save(vendor);
+        }
+
+
         return true;
     }
 
     public AppUser getUserProfileData(String email){
 
-        AppUser user = userRepository.findByEmail(email);
+        AppUser user = userDB.findByEmail(email);
         user.setPasswordHash("lol");
 
         return user;

@@ -111,14 +111,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 )
                 AND (
                     c.name = :categoryName
-                    OR c.parentId IN (
-                        SELECT c2.id
-                        FROM Category c2
-                        WHERE c2.parentId = (
-                            SELECT c3.id
-                            FROM Category c3
-                            WHERE c3.name = :categoryName
-                        )
+                    OR :categoryName IN (
+                        SELECT c2.name
+                        FROM Category c1
+                        JOIN Category c2 ON c1.id = c2.parentId
+                        WHERE c1.name = :categoryName
                     )
                 )
                 AND (:minPrice IS NULL OR p.price >= :minPrice)
@@ -149,14 +146,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 v.name = :vendorName
                 AND (
                     c.name = :categoryName
-                    OR c.parentId IN (
-                        SELECT c2.id
-                        FROM Category c2
-                        WHERE c2.parentId = (
-                            SELECT c3.id
-                            FROM Category c3
-                            WHERE c3.name = :categoryName
-                        )
+                    OR :categoryName IN (
+                        SELECT c2.name
+                        FROM Category c1
+                        JOIN Category c2 ON c1.id = c2.parentId
+                        WHERE c1.name = :categoryName
                     )
                 )
                 AND LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
