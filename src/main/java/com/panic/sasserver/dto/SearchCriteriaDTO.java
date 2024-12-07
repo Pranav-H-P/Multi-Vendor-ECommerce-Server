@@ -29,14 +29,7 @@ http://localhost:8080/api/product/search \
 "searchTerm": "",
 "vendor": null,
 "category": "Dumbbells",
-"minPrice": 700.0,
-"maxPrice": 2000.0,
-"priceOrder": null,
-"pageNumber": 0,
-"perPage": 10,
-"creationOrder": null,
-"ratingOrder" :null,
-"salesOrder": null,
-"stockOrder": null
+"minPrice": 500.0,
+
 }'
 */

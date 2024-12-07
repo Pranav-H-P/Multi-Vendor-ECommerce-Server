@@ -26,7 +26,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             """)
     ProductDTO getDTOFromId(@Param("id") Long id);
 
-    // searches based on category name, product name and vendor name
+    // searches without cat or vendor specified
     @Query(value="""
             SELECT
                 new com.panic.sasserver.dto.ProductDTO(p.name, v.name, p.id, p.vendorId, p.price, p.description, p.categoryId,
@@ -43,9 +43,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                     GROUP BY r.productId
                 ) ar ON ar.pId = p.id
             WHERE
-                LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
-                OR LOWER(v.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
-                OR LOWER(c.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                (   LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                    OR LOWER(v.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                    OR LOWER(c.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                )
                 AND (:minPrice IS NULL OR p.price >= :minPrice)
                 AND (:maxPrice IS NULL OR p.price <= :maxPrice)
             """)
@@ -74,8 +75,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             WHERE
                 v.name = :vendorName
             AND (
-                LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
-                OR LOWER(c.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                (
+                    LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                    OR LOWER(c.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                )
                 AND (:minPrice IS NULL OR p.price >= :minPrice)
                 AND (:maxPrice IS NULL OR p.price <= :maxPrice)
             )
@@ -103,8 +106,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                     GROUP BY r.productId
                 ) ar ON ar.pId = p.id
             WHERE
-                (LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
-                OR LOWER(v.name) LIKE LOWER(CONCAT('%', :searchTerm, '%')))
+                (   LOWER(p.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                    OR LOWER(v.name) LIKE LOWER(CONCAT('%', :searchTerm, '%'))
+                )
                 AND (
                     c.name = :categoryName
                     OR c.parentId IN (

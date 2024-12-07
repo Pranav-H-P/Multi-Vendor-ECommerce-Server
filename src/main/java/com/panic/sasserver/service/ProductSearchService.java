@@ -95,59 +95,27 @@ public class ProductSearchService {
                     criteria.getMinPrice(),
                     criteria.getMaxPrice(),
                     pageable);
+
         }else if (criteria.getVendor() != null){
             products = productDB.getDTOListByVendor(searchTerm, criteria.getVendor(),
                     criteria.getMinPrice(),
                     criteria.getMaxPrice(),
                     pageable);
+
         }else if (criteria.getCategory() != null){
             products = productDB.getDTOListByCategory(searchTerm, criteria.getCategory(),
                     criteria.getMinPrice(),
                     criteria.getMaxPrice(),
                     pageable);
+
         }else{
             products = productDB.getDTOListFromSearchTerm(searchTerm,
                     criteria.getMinPrice(),
                     criteria.getMaxPrice(),
                     pageable);
+
         }
 
-
-        /*
-        if (criteria.getMinPrice() != null) {
-            products = products.stream()
-                    .filter(product -> product.getPrice() >= criteria.getMinPrice())
-                    .toList();
-        }
-
-        if (criteria.getMaxPrice() != null) {
-            products = products.stream()
-                    .filter(product -> product.getPrice() <= criteria.getMaxPrice())
-                    .toList();
-        }
-
-        if (criteria.getPriceOrder() != null) {
-            products = switch (criteria.getPriceOrder()) {
-                case ASC -> products.stream()
-                        .sorted(Comparator.comparing(ProductDTO::getPrice))
-                        .toList();
-                case DSC -> products.stream()
-                        .sorted(Comparator.comparing(ProductDTO::getPrice).reversed())
-                        .toList();
-                default -> products;
-            };
-        }
-        if (criteria.getCreationOrder() != null) {
-            products = switch (criteria.getCreationOrder()) {
-                case ASC -> products.stream()
-                        .sorted(Comparator.comparing(ProductDTO::getPrice))
-                        .toList();
-                case DSC -> products.stream()
-                        .sorted(Comparator.comparing(ProductDTO::getPrice).reversed())
-                        .toList();
-                default -> products;
-            };
-        }*/
 
 
         return products;
