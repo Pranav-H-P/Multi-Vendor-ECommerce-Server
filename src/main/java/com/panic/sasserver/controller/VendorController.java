@@ -8,6 +8,8 @@ import com.panic.sasserver.repository.VendorRepository;
 import com.panic.sasserver.service.ProductSearchService;
 import com.panic.sasserver.service.ReviewSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,19 @@ public class VendorController {
 
         if (vendor.isPresent()) {
             return ResponseEntity.ok(vendor);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/list/{pageNo}/{perPage}")
+    public ResponseEntity<List<Vendor>> getProductById(@PathVariable Integer pageNo, @PathVariable Integer perPage) {
+
+        Pageable pageable = PageRequest.of(pageNo, perPage);
+        List<Vendor> vendors = vendorDB.findAll(pageable).getContent();
+
+        if (!vendors.isEmpty()) {
+            return ResponseEntity.ok(vendors);
         } else {
             return ResponseEntity.notFound().build();
         }

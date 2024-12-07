@@ -57,10 +57,10 @@ public class SampleDBFiller {
         /*
          * VENDOR LIST
          * vendor 1 - PMax
-         * vendor 2 - HeavyDuty
+         * vendor 2 - Heavy Duty
          * vendor 3 - ABC
-         * vendor 4 - StrengthSports
-         * vendor 5 - BarBreaker
+         * vendor 4 - Strength Sports
+         * vendor 5 - Bar Breaker
          *
          * USER LIST
          * Arnold - customer (Actor/Mr Olympia)
@@ -72,10 +72,10 @@ public class SampleDBFiller {
          * Yujiro - customer (Baki the grappler)
          * Bane - customer (Batman)
          * PMax - vendor (vendor account)
-         * HeavyDuty - vendor (vendor account)
+         * Heavy Duty - vendor (vendor account)
          * ABC - vendor (vendor account)
-         * StrengthSports - vendor (vendor account)
-         * BarBreaker - vendor (vendor account)
+         * Strength Sports - vendor (vendor account)
+         * Bar Breaker - vendor (vendor account)
          *
          * ID - CATEGORY
          * 1 - dumbbells
@@ -104,10 +104,10 @@ public class SampleDBFiller {
         userDB.save(new AppUser("Bane", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "bane@gmail.com", 9876543217L, "505 Gotham Underground, Gotham City", false)); // User ID 9
         userDB.save(new AppUser("Mahoraga", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "bigraga@gmail.com", 9882373213L, "10 Sacred treasure Street, Shadow Realm", false)); // User ID 10
         userDB.save(new AppUser("PMax", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "pmax@gmail.com", 9876543218L, "789 Main Market, Central Plaza", false));
-        userDB.save(new AppUser("HeavyDuty", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "heavyduty@gmail.com", 9876543219L, "789 Main Market, Central Plaza", false));
+        userDB.save(new AppUser("Heavy Duty", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "heavyduty@gmail.com", 9876543219L, "789 Main Market, Central Plaza", false));
         userDB.save(new AppUser("ABC", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "abc@gmail.com", 9876543220L, "789 Main Market, Central Plaza", false));
-        userDB.save(new AppUser("StrengthSports", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "strengthsports@gmail.com", 9876543221L, "789 Main Market, Central Plaza", false));
-        userDB.save(new AppUser("BarBreaker", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "barbreaker@gmail.com", 9870245221L, "789 Main Market, Central Plaza", false));
+        userDB.save(new AppUser("Strength Sports", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "strengthsports@gmail.com", 9876543221L, "789 Main Market, Central Plaza", false));
+        userDB.save(new AppUser("Bar Breaker", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "barbreaker@gmail.com", 9870245221L, "789 Main Market, Central Plaza", false));
         userDB.save(new AppUser("User 1", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "user1@gmail.com", 9882332113L, "lorem Street, ipsum", false));
         userDB.save(new AppUser("User 2", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "user2@gmail.com", 9876543210L, "lorem Street, ipsum", false));
         userDB.save(new AppUser("User 3", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "user3@gmail.com", 9123456789L, "lorem Street, ipsum", false));
@@ -142,10 +142,10 @@ public class SampleDBFiller {
 
 
         vendorDB.save(new Vendor(11L, "PMax", "pmax@gmail.com, 9876543218", lorem,VendorStatus.APPROVED, LocalDate.of(2024, 5, 1)));
-        vendorDB.save(new Vendor(12L, "HeavyDuty", "heavyduty@gmail.com, 9876543219", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 6, 15)));
+        vendorDB.save(new Vendor(12L, "Heavy Duty", "heavyduty@gmail.com, 9876543219", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 6, 15)));
         vendorDB.save(new Vendor(13L, "ABC", "abc@gmail.com, 9876543220", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 7, 10)));
-        vendorDB.save(new Vendor(14L, "StrengthSports", "strengthsports@gmail.com, 9876543221", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 8, 20)));
-        vendorDB.save(new Vendor(15L, "BarBreaker", "barbreaker@gmail.com, 9876543222", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 9, 25)));
+        vendorDB.save(new Vendor(14L, "Strength Sports", "strengthsports@gmail.com, 9876543221", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 8, 20)));
+        vendorDB.save(new Vendor(15L, "Bar Breaker", "barbreaker@gmail.com, 9876543222", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 9, 25)));
 
 
         categoryDB.save(new Category("Dumbbells", "Various weights of dumbbells", 11L));
