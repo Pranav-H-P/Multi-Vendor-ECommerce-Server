@@ -190,7 +190,6 @@ public class SampleDBFiller {
         productDB.save(new Product(15L, "Lat Pulldown Machine", "Multi-purpose lat pulldown machine", 65000.0, 10L, 2L, LocalDate.now()));
         productDB.save(new Product(15L, "Leg Press Machine", "High-quality leg press machine", 85000.0, 10L, 2L,  LocalDate.now()));
         productDB.save(new Product(15L, "Cable Crossover Machine", "Versatile cable crossover machine", 95000.0, 10L, 1L, LocalDate.now()));
-
         productDB.save(new Product(11L, "Hex Dumbbell 5kg set of 4", "Durable rubber-coated 5kg hex dumbbell set of 4", 1500.0, 1L, 12L, LocalDate.now()));
         productDB.save(new Product(11L, "Hex Dumbbell 7.5kg set of 4", "Durable rubber-coated 7.5kg hex dumbbell set of 4", 2250.0, 1L, 10L, LocalDate.now()));
         productDB.save(new Product(11L, "Hex Dumbbell 10kg set of 4", "Durable rubber-coated 10kg hex dumbbell set of 4", 3000.0, 1L, 8L, LocalDate.now()));
@@ -221,7 +220,6 @@ public class SampleDBFiller {
         productDB.save(new Product(15L, "Lat Pulldown Machine set of 2", "Multi-purpose lat pulldown machine set of 2", 129879.0, 10L, 2L, LocalDate.now()));
         productDB.save(new Product(15L, "Leg Press Machine set of 2", "High-quality leg press machine set of 2", 169892.0, 10L, 2L,  LocalDate.now()));
         productDB.save(new Product(15L, "Cable Crossover Machine set of 3", "Versatile cable crossover machine set of 3", 284799.0, 10L, 1L, LocalDate.now()));
-
         productDB.save(new Product(11L, "Hex Dumbbell 5kg set of 6", "Durable rubber-coated 5kg hex dumbbell set of 6", 2249.0, 1L, 12L, LocalDate.now()));
         productDB.save(new Product(11L, "Hex Dumbbell 7.5kg set of 6", "Durable rubber-coated 7.5kg hex dumbbell set of 6", 2250.0, 1L, 10L, LocalDate.now()));
         productDB.save(new Product(11L, "Hex Dumbbell 10kg set of 6", "Durable rubber-coated 10kg hex dumbbell set of 6", 4499.0, 1L, 8L, LocalDate.now()));
@@ -252,7 +250,6 @@ public class SampleDBFiller {
         productDB.save(new Product(15L, "Lat Pulldown Machine set of 4", "Multi-purpose lat pulldown machine set of 4", 259758.0, 10L, 2L, LocalDate.now()));
         productDB.save(new Product(15L, "Leg Press Machine set of 4", "High-quality leg press machine set of 4", 339784.0, 10L, 2L,  LocalDate.now()));
         productDB.save(new Product(15L, "Cable Crossover Machine set of 6", "Versatile cable crossover machine set of 6", 569599.0, 10L, 1L, LocalDate.now()));
-
         productDB.save(new Product(11L, "Hex Dumbbell 5kg set of 8", "Durable rubber-coated 5kg hex dumbbell set of 8", 4999.0, 1L, 12L, LocalDate.now()));
         productDB.save(new Product(11L, "Hex Dumbbell 7.5kg set of 8", "Durable rubber-coated 7.5kg hex dumbbell set of 8", 4499.0, 1L, 10L, LocalDate.now()));
         productDB.save(new Product(11L, "Hex Dumbbell 10kg set of 8", "Durable rubber-coated 10kg hex dumbbell set of 8", 8999.0, 1L, 8L, LocalDate.now()));
@@ -283,6 +280,8 @@ public class SampleDBFiller {
         productDB.save(new Product(15L, "Lat Pulldown Machine set of 6", "Multi-purpose lat pulldown machine set of 6", 389699.0, 10L, 2L, LocalDate.now()));
         productDB.save(new Product(15L, "Leg Press Machine set of 6", "High-quality leg press machine set of 6", 509699.0, 10L, 2L,  LocalDate.now()));
         productDB.save(new Product(15L, "Cable Crossover Machine set of 8", "Versatile cable crossover machine set of 8", 759599.0, 10L, 1L, LocalDate.now()));
+
+
         // Example: Reviews for Product ID 1 - "Hex Dumbbell 5kg"
         reviewDB.save(new Review(1L, 2L, Rating.EXCELLENT, "Perfect for my morning workouts. Solid and durable!", LocalDate.now())); // Arnold
         reviewDB.save(new Review(1L, 3L, Rating.GOOD, "The weight is balanced. Good for training, but I wish the grip was softer.", LocalDate.now())); // Wamuu

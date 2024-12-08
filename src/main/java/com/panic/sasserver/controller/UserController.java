@@ -1,10 +1,16 @@
 package com.panic.sasserver.controller;
 
+import com.panic.sasserver.dto.CartItemDTO;
 import com.panic.sasserver.dto.ProductDTO;
+import com.panic.sasserver.model.CartItem;
 import com.panic.sasserver.model.Product;
+import com.panic.sasserver.model.Review;
 import com.panic.sasserver.model.WishlistItem;
+import com.panic.sasserver.repository.ReviewRepository;
+import com.panic.sasserver.service.CartPaymentService;
 import com.panic.sasserver.service.CustomUserDetailService;
 import com.panic.sasserver.service.WishListService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,6 +32,12 @@ public class UserController {
 
     @Autowired
     private WishListService wishListService;
+
+    @Autowired
+    private ReviewRepository reviewDB; // only gonna be used for 1 function, so directly injecting
+
+    @Autowired
+    private CartPaymentService cartPaymentService;
 
     @PostMapping("/updateaddress")
     public ResponseEntity<String> uploadProfilePicture(@RequestBody String address){
@@ -63,7 +75,7 @@ public class UserController {
     @GetMapping("/getwishlist/{pageno}/{perpage}")
     public ResponseEntity<List<ProductDTO>> getWishlistProductsById(@PathVariable Integer pageno, @PathVariable Integer perpage) {
         List<ProductDTO> products = wishListService.getWishlistItems(userDetailService.getCurrentUserId(), pageno, perpage);
-        System.out.println(products);
+
         if (!products.isEmpty()) {
             return ResponseEntity.ok(products);
         } else {
@@ -81,4 +93,54 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @Transactional
+    @PostMapping("/postreview")
+    public ResponseEntity<String> postReview(@RequestBody Review review){
+
+        reviewDB.save(review); // will never be null it seems
+
+        return ResponseEntity.ok("ok");
+
+    }
+
+    @Transactional
+    @PostMapping("/addtocart")
+    public ResponseEntity<String> addToCart(@RequestBody CartItem item){
+
+        cartPaymentService.addToCart(item.getUserId(), item.getProductId(), item.getQuantity(), item.getDateAdded()); // will never be null it seems
+
+        return ResponseEntity.ok("ok");
+
+    }
+
+    @Transactional
+    @PostMapping("/deletefromcart")
+    public ResponseEntity<String> deleteCartItem(@RequestBody CartItemDTO item){
+
+        if (cartPaymentService.deleteCartItem(item)){
+            return ResponseEntity.ok("ok");
+        }else{
+            return ResponseEntity.internalServerError().build();
+        }
+
+
+
+    }
+
+
+    @GetMapping("/getcart") // on pagination since cart is mostly smaller
+    public ResponseEntity<List<CartItemDTO>> getCartItems(){
+
+        List<CartItemDTO> result = cartPaymentService.getAllCartItems(userDetailService.getCurrentUserId());
+
+        if (!result.isEmpty()){
+            return ResponseEntity.ok(result);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
+
+    }
+
 }
