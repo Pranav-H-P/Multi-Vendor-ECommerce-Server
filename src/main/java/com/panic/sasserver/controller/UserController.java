@@ -1,6 +1,7 @@
 package com.panic.sasserver.controller;
 
 import com.panic.sasserver.dto.CartItemDTO;
+import com.panic.sasserver.dto.OrderDTO;
 import com.panic.sasserver.dto.ProductDTO;
 import com.panic.sasserver.model.CartItem;
 import com.panic.sasserver.model.Product;
@@ -116,20 +117,27 @@ public class UserController {
 
     @Transactional
     @PostMapping("/deletefromcart")
-    public ResponseEntity<String> deleteCartItem(@RequestBody CartItemDTO item){
+    public ResponseEntity<String> deleteCartItem(@RequestBody CartItemDTO item) {
 
-        if (cartPaymentService.deleteCartItem(item)){
+        if (cartPaymentService.deleteCartItem(item)) {
             return ResponseEntity.ok("ok");
-        }else{
+        } else {
             return ResponseEntity.internalServerError().build();
         }
 
 
+    }
+    @GetMapping("/clearcart")
+    public ResponseEntity<String> clearCart(){
 
+        if (cartPaymentService.clearCart(userDetailService.getCurrentUserId())){
+            return ResponseEntity.ok("ok");
+        }else{
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
-
-    @GetMapping("/getcart") // on pagination since cart is mostly smaller
+    @GetMapping("/getcart") // no pagination since cart is mostly smaller
     public ResponseEntity<List<CartItemDTO>> getCartItems(){
 
         List<CartItemDTO> result = cartPaymentService.getAllCartItems(userDetailService.getCurrentUserId());
@@ -143,4 +151,29 @@ public class UserController {
 
     }
 
+    @PostMapping("/placeorder")
+    public ResponseEntity<String> postOrders(@RequestBody List<CartItemDTO> item) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = authentication.getName();
+        String address = userDetailService.getUserProfileData(userEmail).getAddress();
+
+        if (cartPaymentService.cartToPaymentOrder(item,address)) {
+
+            return ResponseEntity.ok("ok");
+        } else {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @GetMapping("/getorder/{pageno}/{perpage}")
+    public ResponseEntity<List<OrderDTO>> getOrders(@PathVariable Integer pageno, @PathVariable Integer perpage){
+        List<OrderDTO> result = cartPaymentService.getAllOrders(userDetailService.getCurrentUserId(), pageno, perpage);
+        if (!result.isEmpty()){
+            return ResponseEntity.ok(result);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
+
