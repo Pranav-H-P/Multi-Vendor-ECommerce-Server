@@ -98,7 +98,7 @@ public class ImageController {
     }
 
     @PreAuthorize("hasAuthority('VENDOR')")
-    @PostMapping("/uploadproductimages")
+    @PostMapping("/uploadproductimage")
     public ResponseEntity<String> uploadAndConvertMultipleToJpg(
             @RequestParam("files") List<MultipartFile> files,
             @RequestParam("id") Long id) {

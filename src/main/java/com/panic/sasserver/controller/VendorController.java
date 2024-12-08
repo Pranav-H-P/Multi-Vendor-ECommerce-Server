@@ -20,7 +20,7 @@ import java.util.Optional;
 /*vendor related endpoints
 *
 *
-* /id is accessible to the public, everything else requires authorization
+*  is accessible to the public
 * */
 
 @RestController

@@ -4,12 +4,15 @@ import com.panic.sasserver.dto.ProductDTO;
 import com.panic.sasserver.dto.SearchCriteriaDTO;
 import com.panic.sasserver.enums.SearchSortOrder;
 import com.panic.sasserver.model.Category;
+import com.panic.sasserver.model.Product;
 import com.panic.sasserver.repository.CategoryRepository;
 import com.panic.sasserver.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -125,4 +128,14 @@ public class ProductSearchService {
         return productDB.getDTOFromId(id);
     }
 
+    @Transactional
+    @Modifying
+    public boolean saveProduct(Product product) {
+        try{
+            productDB.save(product);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

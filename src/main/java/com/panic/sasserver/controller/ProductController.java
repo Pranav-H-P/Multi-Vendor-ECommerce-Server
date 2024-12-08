@@ -5,10 +5,12 @@ import com.panic.sasserver.dto.ReviewCriteriaDTO;
 import com.panic.sasserver.dto.ReviewDTO;
 import com.panic.sasserver.dto.SearchCriteriaDTO;
 import com.panic.sasserver.model.Category;
+import com.panic.sasserver.model.Product;
 import com.panic.sasserver.service.ProductSearchService;
 import com.panic.sasserver.service.ReviewSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -86,6 +88,16 @@ public class ProductController {
             return ResponseEntity.ok(reviews);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+    @PreAuthorize("hasAuthority('VENDOR')")
+    @PostMapping("/save") // for creating a new product
+    public ResponseEntity<String> saveProduct(@RequestBody Product product){
+
+        if (productSearchService.saveProduct(product)) {
+            return ResponseEntity.ok("ok");
+        } else {
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
