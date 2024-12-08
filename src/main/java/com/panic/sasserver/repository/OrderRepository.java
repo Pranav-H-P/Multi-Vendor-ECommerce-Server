@@ -16,4 +16,9 @@ public interface OrderRepository extends JpaRepository<CustOrder, Long> {
             SELECT o from CustOrder o where o.userId = :userid
             """)
     List<CustOrder> findAllOrdersById(@Param("userid")Long userId, Pageable pageable);
+
+    @Query("""
+            SELECT o from CustOrder o where o.userId = :userid AND o.productId = :prodid
+            """)
+    List<CustOrder> findIfProductExists(@Param("userid") Long userId,@Param("prodid") Long productId);
 }

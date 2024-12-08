@@ -93,6 +93,16 @@ public class CartPaymentService {
 
     }
 
+    public boolean checkIfPurchased(Long userId, Long productId){
+        List<CustOrder> results = orderDB.findIfProductExists(userId, productId);
+
+        if (results.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     @Transactional
     public boolean clearCart(Long id){
         try{

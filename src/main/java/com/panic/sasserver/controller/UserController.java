@@ -175,5 +175,16 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/purchased/{prodid}")
+    public ResponseEntity<String> checkIfPurchased(@PathVariable Long prodid){
+
+
+        if (cartPaymentService.checkIfPurchased(userDetailService.getCurrentUserId(), prodid)){
+            return ResponseEntity.ok("ok");
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
 
