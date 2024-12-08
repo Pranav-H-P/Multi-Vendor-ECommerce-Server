@@ -75,6 +75,8 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
     @PostMapping("/review") // for getting all user reviews for a given product
     public ResponseEntity<List<ReviewDTO>> getProductReviews(@RequestBody ReviewCriteriaDTO criteria){
 

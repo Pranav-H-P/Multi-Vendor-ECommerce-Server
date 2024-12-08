@@ -1,6 +1,10 @@
 package com.panic.sasserver.controller;
 
+import com.panic.sasserver.dto.ProductDTO;
+import com.panic.sasserver.model.Product;
+import com.panic.sasserver.model.WishlistItem;
 import com.panic.sasserver.service.CustomUserDetailService;
+import com.panic.sasserver.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -8,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 
 @RestController
@@ -18,17 +24,61 @@ public class UserController {
     @Autowired
     private CustomUserDetailService userDetailService;
 
-    @PostMapping("/updateAddress")
+    @Autowired
+    private WishListService wishListService;
+
+    @PostMapping("/updateaddress")
     public ResponseEntity<String> uploadProfilePicture(@RequestBody String address){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userEmail = authentication.getName();
 
-
-        if (userDetailService.updateUserAddress(userEmail, address)){
+        if (userDetailService.updateCurrentUserAddress(address) > 0){
             return ResponseEntity.ok("ok");
         }else{
             return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping("/addwishlist")
+    public ResponseEntity<String> addToWishlist(@RequestBody WishlistItem item){
+
+
+        if (wishListService.addToWishList(item) > 0){
+            return ResponseEntity.ok("ok");
+        }else{
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping("/removewishlist")
+    public ResponseEntity<String> removeFromWishlist(@RequestBody WishlistItem item){
+
+
+        if (wishListService.removeFromWishList(item) > 0){
+            return ResponseEntity.ok("ok");
+        }else{
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @GetMapping("/getwishlist/{pageno}/{perpage}")
+    public ResponseEntity<List<ProductDTO>> getWishlistProductsById(@PathVariable Integer pageno, @PathVariable Integer perpage) {
+        List<ProductDTO> products = wishListService.getWishlistItems(userDetailService.getCurrentUserId(), pageno, perpage);
+        System.out.println(products);
+        if (!products.isEmpty()) {
+            return ResponseEntity.ok(products);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/wishlistexists/{prodid}")
+    public ResponseEntity<String> checkIfItemExistsInWishlist(@PathVariable Long prodid) {
+        Long count = wishListService.checkIfExists(userDetailService.getCurrentUserId(), prodid);
+
+        if (count > 0) {
+            return ResponseEntity.ok("ok");
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 }

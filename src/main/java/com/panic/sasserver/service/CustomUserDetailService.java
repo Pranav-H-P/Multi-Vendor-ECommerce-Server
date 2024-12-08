@@ -85,10 +85,7 @@ public class CustomUserDetailService implements UserDetailsService{
         return user;
     }
 
-    @Transactional
-    public Boolean updateUserAddress(String email, String address){
-        return userDB.updateAddressByEmail(email, address);
-    }
+
 
     public Long getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -96,5 +93,12 @@ public class CustomUserDetailService implements UserDetailsService{
         AppUser user = userDB.findByEmail(userEmail);
 
         return user.getId();
+    }
+
+    @Transactional
+    public Integer updateCurrentUserAddress(String address) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        return userDB.updateAddressByEmail(email, address);
     }
 }

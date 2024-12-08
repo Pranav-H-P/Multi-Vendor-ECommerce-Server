@@ -15,5 +15,5 @@ public interface UserRepository extends JpaRepository<AppUser, Long> {
     @Modifying
     @Transactional
     @Query("UPDATE AppUser u SET u.address = :address WHERE u.email = :email")
-    Boolean updateAddressByEmail(@Param("email") String email, @Param("address") String address);
+    Integer updateAddressByEmail(@Param("email") String email, @Param("address") String address);
 }

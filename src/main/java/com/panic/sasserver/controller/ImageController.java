@@ -32,7 +32,7 @@ public class ImageController {
     @Value("${upload.dir}")
     private String uploadDir;
 
-
+    @Autowired
     private CustomUserDetailService userDetailService;
 
     @GetMapping("/product/{id}")
