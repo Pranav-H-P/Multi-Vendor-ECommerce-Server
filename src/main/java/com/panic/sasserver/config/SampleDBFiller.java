@@ -108,6 +108,9 @@ public class SampleDBFiller {
         userDB.save(new AppUser("ABC", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "abc@gmail.com", 9876543220L, "789 Main Market, Central Plaza", false));
         userDB.save(new AppUser("Strength Sports", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "strengthsports@gmail.com", 9876543221L, "789 Main Market, Central Plaza", false));
         userDB.save(new AppUser("Bar Breaker", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "barbreaker@gmail.com", 9870245221L, "789 Main Market, Central Plaza", false));
+        userDB.save(new AppUser("Vendor 1", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "vendor1@gmail.com", 7727776789L, "lorem Street, ipsum", false));
+        userDB.save(new AppUser("Vendor 2", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.VENDOR, "vendor2@gmail.com", 7432176789L, "lorem Street, ipsum", false));
+
         userDB.save(new AppUser("User 1", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "user1@gmail.com", 9882332113L, "lorem Street, ipsum", false));
         userDB.save(new AppUser("User 2", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "user2@gmail.com", 9876543210L, "lorem Street, ipsum", false));
         userDB.save(new AppUser("User 3", "$2a$12$amYnvLmADyPDmqaZ.zdxIuLexslVqWejDUkvjx9YJPcU6cm4ASHgK", UserRole.CUSTOMER, "user3@gmail.com", 9123456789L, "lorem Street, ipsum", false));
@@ -141,12 +144,13 @@ public class SampleDBFiller {
 
 
 
-
         vendorDB.save(new Vendor(11L, "PMax", "pmax@gmail.com,9876543218", lorem,VendorStatus.APPROVED, LocalDate.of(2024, 5, 1)));
         vendorDB.save(new Vendor(12L, "Heavy Duty", "heavyduty@gmail.com,9876543219", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 6, 15)));
         vendorDB.save(new Vendor(13L, "ABC", "abc@gmail.com,9876543220", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 7, 10)));
         vendorDB.save(new Vendor(14L, "Strength Sports", "strengthsports@gmail.com,9876543221", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 8, 20)));
         vendorDB.save(new Vendor(15L, "Bar Breaker", "barbreaker@gmail.com,9876543222", lorem, VendorStatus.APPROVED, LocalDate.of(2024, 9, 25)));
+        vendorDB.save(new Vendor(16L, "Vendor 1", "vendor1@gmail.com,9832543221", lorem, VendorStatus.PENDING, LocalDate.of(2024, 1, 20)));
+        vendorDB.save(new Vendor(17L, "Vendor 2", "vendor2@gmail.com,9876323222", lorem, VendorStatus.PENDING, LocalDate.of(2024, 2, 25)));
 
 
         categoryDB.save(new Category("Dumbbells", "Various weights of dumbbells", null));
@@ -280,6 +284,7 @@ public class SampleDBFiller {
         productDB.save(new Product(15L, "Lat Pulldown Machine set of 6", "Multi-purpose lat pulldown machine set of 6", 389699.0, 10L, 2L, LocalDate.now()));
         productDB.save(new Product(15L, "Leg Press Machine set of 6", "High-quality leg press machine set of 6", 509699.0, 10L, 2L,  LocalDate.now()));
         productDB.save(new Product(15L, "Cable Crossover Machine set of 8", "Versatile cable crossover machine set of 8", 759599.0, 10L, 1L, LocalDate.now()));
+
 
 
         // Example: Reviews for Product ID 1 - "Hex Dumbbell 5kg"

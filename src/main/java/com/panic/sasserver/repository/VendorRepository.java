@@ -13,4 +13,8 @@ import java.util.List;
 public interface VendorRepository extends JpaRepository<Vendor, Long> {
 
 
+    @Query("""
+            SELECT v FROM Vendor v WHERE v.approvalStatus = com.panic.sasserver.enums.VendorStatus.PENDING
+            """)
+    List<Vendor> getPendingVendors();
 }
